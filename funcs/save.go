@@ -1,4 +1,4 @@
-package main
+package funcs
 
 import (
 	"fmt"
@@ -46,7 +46,6 @@ func makeDir(name string) bool {
 }
 
 func collectionStatus(collectionPath string) bool {
-	// checking current files in warehouse
 
 	res := strings.LastIndex(collectionPath, "/")
 	var subPath string
@@ -64,8 +63,6 @@ func collectionStatus(collectionPath string) bool {
 		return false
 	}
 	var existingFiles = strings.Split(string(result), "\n")
-	fmt.Println("Existing files in warehouse/")
-	fmt.Println(existingFiles)
 	var checkStatus bool
 
 	for _, element := range existingFiles {
@@ -135,8 +132,6 @@ func GetCollections(address string) ([]string, bool) {
 		log.Fatal(err)
 	}
 	var existingCollections = strings.Split(string(response), "\n")
-	fmt.Println("Present collections at Address: ", address)
-	fmt.Println(existingCollections)
 	return existingCollections, true
 
 }
@@ -152,7 +147,6 @@ func Save(path string, data string) bool {
 	var address = "warehouse/" + path + ".data"
 	file, err := os.OpenFile(address, os.O_APPEND|os.O_WRONLY, 0600)
 	if err != nil {
-		fmt.Println("second err here")
 		panic(err)
 	}
 	data = "\n" + data
@@ -183,7 +177,24 @@ func Delete(path string) bool {
 
 }
 
-func main() {
-	// Save("test2/test333" ,"Harkishen singh is the bestest")
-	Delete("test2/")
+//Warehouse ...
+func Warehouse() {
+
+	db := "warehouse"
+	resp, err := exec.Command("ls").Output()
+	if err != nil {
+		panic(err)
+	}
+	var checkWarehouse bool
+	var respStringArr = strings.Split(string(resp), "\n")
+	for _, ele := range respStringArr {
+		if ele == "warehouse" {
+			checkWarehouse = true
+			break
+		}
+	}
+	if !checkWarehouse {
+		exec.Command("mkdir", db).Output()
+	}
+
 }
