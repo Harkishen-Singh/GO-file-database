@@ -168,6 +168,22 @@ func Save(path string, data string) bool {
 
 }
 
+//Delete ...
+func Delete(path string) bool {
+
+	path = "warehouse/" + path
+	_, err := exec.Command("rm", "-R", path).Output()
+	if err != nil {
+		_, err2 := exec.Command("rm", "-R", path + ".data").Output()
+		if err2 != nil {
+			panic("Deletion not possible ''Type 2''. Collection doesnot exists in Address: " + path)
+		}
+	}
+	return true
+
+}
+
 func main() {
-	Save("test2/test333" ,"Harkishen singh is the bestest")
+	// Save("test2/test333" ,"Harkishen singh is the bestest")
+	Delete("test2/")
 }
