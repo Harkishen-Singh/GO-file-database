@@ -20,13 +20,42 @@ func filter(text string) (string, bool) {
 
 }
 
+func checkExistingDir(name string) bool {
+
+	name = "warehouse/" + name
+	_, err := exec.Command("ls", name).Output()
+	if err != nil {
+		return false
+	}
+	return true
+}
+
+func makeDir(name string) bool {
+
+	if !checkExistingDir(name) {
+		name = "warehouse/" + name
+		fmt.Println("hisssss:  " + name)
+		_, err := exec.Command("mkdir", name).Output()
+		if err != nil {
+			fmt.Println("Err makeDir")
+			panic(err)
+		}
+	}
+	return true
+
+}
+
 func collectionStatus(collectionPath string) bool {
 	// checking current files in warehouse
 
-	res := strings.Index(collectionPath, "/")
+	res := strings.LastIndex(collectionPath, "/")
 	var subPath string
 	if res != -1 {
 		subPath = collectionPath[0: res]
+
+		if !makeDir(subPath) {
+			os.Exit(50005)
+		}
 	}
 	expAddr := "warehouse/" + subPath
 	result, err := exec.Command("ls", expAddr).Output()
@@ -40,7 +69,7 @@ func collectionStatus(collectionPath string) bool {
 	var checkStatus bool
 
 	for _, element := range existingFiles {
-		if element == collectionPath + ".data" {
+		if element == collectionPath[res+1:] + ".data" {
 			checkStatus = true
 			break
 		} else {
@@ -56,8 +85,7 @@ func collectionStatus(collectionPath string) bool {
 func createCollection(address string) bool {
 
 	address = "warehouse/" + address + ".data"
-	fmt.Println("Address :: "+address)
-	err := ioutil.WriteFile(address, []byte("default statement"), 0777)
+	err := ioutil.WriteFile(address, []byte(""), 0777)
 	if err != nil {
 		fmt.Println("Error in createCollection Address: "+address)
 		fmt.Println(err)
@@ -88,10 +116,10 @@ func GetDocuments(address string) (string, bool) {
 	if documentAvailable {
 		openfile, err := ioutil.ReadFile(address)
 		if err != nil {
-			data = string(openfile)
-			return data, true
+			return "ERROR", false
 		}
-		return "ERROR", false
+		data = string(openfile)
+		return data, true
 	}
 	return "DOCUMENT_UNAVAILABLE", false
 
@@ -141,5 +169,5 @@ func Save(path string, data string) bool {
 }
 
 func main() {
-	Save("something" ,"Harkishen singh is the best")
+	Save("test2/test333" ,"Harkishen singh is the bestest")
 }
