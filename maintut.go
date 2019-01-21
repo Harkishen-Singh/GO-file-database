@@ -10,4 +10,6 @@ func main() {
 	gobase.Save("TestBase", "Random Test")
 	fmt.Println(gobase.CollectionsAvailable("/"))
 	fmt.Println(gobase.Retrive("TestBase"))
+	var app = "someArr/Test"
+	gobase.SaveArr(&app, []string{"Harkishen", "Singh"})
 }
