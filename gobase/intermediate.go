@@ -10,8 +10,8 @@ import (
 )
 
 
-//Retrive ...
-func Retrive(address string) (string, bool) {
+//RetriveArr ...
+func RetriveArr(address string) (string, bool) {
 
 	var documentAvailable = collectionStatus(address)
 	var data string
@@ -28,8 +28,8 @@ func Retrive(address string) (string, bool) {
 
 }
 
-//CollectionsAvailable ...
-func CollectionsAvailable(address string) ([]string, bool) {
+//CollectionsAvailableArr ...
+func CollectionsAvailableArr(address string) ([]string, bool) {
 
 	var existingCollections []string
 	if address != "/" {
@@ -52,8 +52,8 @@ func CollectionsAvailable(address string) ([]string, bool) {
 
 }
 
-//Save ...
-func Save(path string, data string) bool {
+//SaveArr ...
+func SaveArr(path string, data string) bool {
 
 	exists := collectionStatus(path)
 	if exists == false {
