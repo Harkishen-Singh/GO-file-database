@@ -11,20 +11,21 @@ import (
 
 
 //RetriveArr ...
-func RetriveArr(address string) (string, bool) {
+func RetriveArr(address string) ([]string, bool) {
 
 	var documentAvailable = collectionStatus(address)
-	var data string
+	var data []string
 	address = "warehouse/" + address + ".data"
 	if documentAvailable {
 		openfile, err := ioutil.ReadFile(address)
 		if err != nil {
-			return "ERROR", false
+			return []string{}, false
 		}
-		data = string(openfile)
+		temp := string(openfile)
+		data = strings.Split(temp[1: len(temp) -1], ",")
 		return data, true
 	}
-	return "DOCUMENT_UNAVAILABLE", false
+	return []string{}, false
 
 }
 
@@ -53,7 +54,7 @@ func CollectionsAvailableArr(address string) ([]string, bool) {
 }
 
 //SaveArr ...
-func SaveArr(path string, data string) bool {
+func SaveArr(path string, dataArr []string) bool {
 
 	exists := collectionStatus(path)
 	if exists == false {
@@ -61,33 +62,21 @@ func SaveArr(path string, data string) bool {
 		createCollection(path)
 	}
 	var address = "warehouse/" + path + ".data"
-	file, err := os.OpenFile(address, os.O_APPEND|os.O_WRONLY, 0600)
+	file, err := os.OpenFile(address, os.O_WRONLY, 0600)
 	if err != nil {
 		panic(err)
 	}
-	data = "\n" + data
-	_, err = file.WriteString(data)
+	defer file.Close()
+	var dataString = "["
+	dataString = strings.Join(dataArr, ",")
+	dataString += "]"
+	_, err = file.WriteString(dataString)
 	if err != nil {
 		fmt.Println("Error occured while writing the following data:")
-		fmt.Println("\n" + data)
+		fmt.Println("\n" + dataString)
 		fmt.Println("Address: warehouse/"+address)
 		fmt.Println(err)
 		return false
-	}
-	return true
-
-}
-
-//DeleteArr ...
-func DeleteArr(path string) bool {
-
-	path = "warehouse/" + path
-	_, err := exec.Command("rm", "-R", path).Output()
-	if err != nil {
-		_, err2 := exec.Command("rm", "-R", path + ".data").Output()
-		if err2 != nil {
-			panic("Deletion not possible ''Type 2''. Collection doesnot exists in Address: " + path)
-		}
 	}
 	return true
 

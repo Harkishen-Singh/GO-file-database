@@ -121,7 +121,7 @@ func collectionStatus(collectionPath string) bool {
 func createCollection(address string) bool {
 
 	address = "warehouse/" + address + ".data"
-	err := ioutil.WriteFile(address, []byte(""), 0777)
+	err := ioutil.WriteFile(address, []byte("default"), 0777)
 	if err != nil {
 		fmt.Println("Error in createCollection Address: "+address)
 		fmt.Println(err)
@@ -182,11 +182,11 @@ func Save(path string, data string) bool {
 		createCollection(path)
 	}
 	var address = "warehouse/" + path + ".data"
-	file, err := os.OpenFile(address, os.O_APPEND|os.O_WRONLY, 0600)
+	file, err := os.OpenFile(address, os.O_WRONLY, 0600)
 	if err != nil {
 		panic(err)
 	}
-	data = "\n" + data
+	defer file.Close()
 	_, err = file.WriteString(data)
 	if err != nil {
 		fmt.Println("Error occured while writing the following data:")
