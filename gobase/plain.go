@@ -164,13 +164,23 @@ func Retrive(address string) (string, bool) {
 //CollectionsAvailable ...
 func CollectionsAvailable(address string) ([]string, bool) {
 
-	path := "warehouse/" + address
-	response, err := exec.Command("ls", path).Output()
-	if err != nil {
-		fmt.Println("Error while looking for Collections, at Address: "+address)
-		log.Fatal(err)
+	var existingCollections []string
+	if address != "/" {
+		path := "warehouse/" + address
+		response, err := exec.Command("ls", path).Output()
+		if err != nil {
+			fmt.Println("Error while looking for Collections, at Address: "+address)
+			log.Fatal(err)
+		}
+		existingCollections = strings.Split(string(response), "\n")
+	} else {
+		response, err := exec.Command("ls").Output()
+		if err != nil {
+			fmt.Println("Error while looking for Collections, at Address: "+address)
+			log.Fatal(err)
+		}
+		existingCollections = strings.Split(string(response), "\n")
 	}
-	var existingCollections = strings.Split(string(response), "\n")
 	return existingCollections, true
 
 }
