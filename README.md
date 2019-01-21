@@ -27,15 +27,15 @@ Example:
 
 <code>gobase.Save("Test", "some data")</code><br>
 <code>gobase.Save("Random/Path/Test", "some data")</code>
-<br>param 1: Status i.e., True if sccessful, else False
+<br>return_param 1: Status i.e., True if sccessful, else False
 
 <hr>
 
 <h5>Retriving</h5>
 
 <code>gobase.Retrive(path string) (string, bool)</code>
-<br>param 1: Available data at the specified path if successful; else ERROR_CODE: ```DOCUMENT_UNAVAILABLE``` or ```ERROR```
-<br>param 2: Status i.e., True if successful, else False
+<br>return_param 1: Available data at the specified path if successful; else ERROR_CODE: ```DOCUMENT_UNAVAILABLE``` or ```ERROR```
+<br>return_param 2: Status i.e., True if successful, else False
 
 Example:
 
@@ -47,8 +47,8 @@ Example:
 <h5>Get Available Collections at an Address / Path</h5>
 
 <code>gobase.CollectionsAvaliable(path string) ([]string, bool)</code>
-<br>param 1: Available Collections at the specified path
-<br>param 2: Status i.e., True if successful, else False
+<br>return_param 1: Available Collections at the specified path
+<br>return_param 2: Status i.e., True if successful, else False
 
 Example:
 
@@ -60,6 +60,7 @@ Example:
 <h5>Deleting</h5>
 
 <code>gobase.Delete(path string) bool</code>
+<br>return_param 1: Status i.e., True if successful, else False
 
 Example:
 
