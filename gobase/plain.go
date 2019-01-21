@@ -174,7 +174,7 @@ func CollectionsAvailable(address string) ([]string, bool) {
 		}
 		existingCollections = strings.Split(string(response), "\n")
 	} else {
-		response, err := exec.Command("ls").Output()
+		response, err := exec.Command("ls", "warehouse/").Output()
 		if err != nil {
 			fmt.Println("Error while looking for Collections, at Address: "+address)
 			log.Fatal(err)
