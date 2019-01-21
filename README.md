@@ -15,6 +15,10 @@ We have made an attempt to bridge this gap, by developing GO-db.
 GO-db is a simple to use file based database, which is light, simple and efficient on resources. It has been designed with 
 simplicity in <strong>AIM</strong>. 
 
+<h3>Installation</h3>
+
+add <code>"github.com/Harkishen-Singh/GO-db/gobase"</code> to import block of your file and open the terminal, and type <code>go get -v -t -d && go build -v</code>
+
 <h3>Usage</h3>
 
 <hr>
