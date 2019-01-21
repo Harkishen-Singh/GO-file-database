@@ -47,6 +47,7 @@ func makeDir(name string) bool {
 
 func collectionStatus(collectionPath string) bool {
 
+	warehouse() // check warehouse availability
 	res := strings.LastIndex(collectionPath, "/")
 	var subPath string
 	if res != -1 {
@@ -124,8 +125,6 @@ func GetDocuments(address string) (string, bool) {
 
 //GetCollections ...
 func GetCollections(address string) ([]string, bool) {
-
-	warehouse()
 
 	path := "warehouse/" + address
 	response, err := exec.Command("ls", path).Output()
