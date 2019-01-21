@@ -143,8 +143,8 @@ func readCollection(address string) (string, bool) {
 
 }
 
-//GetDocuments ...
-func GetDocuments(address string) (string, bool) {
+//Retrive ...
+func Retrive(address string) (string, bool) {
 
 	var documentAvailable = collectionStatus(address)
 	var data string
@@ -161,8 +161,8 @@ func GetDocuments(address string) (string, bool) {
 
 }
 
-//GetCollections ...
-func GetCollections(address string) ([]string, bool) {
+//CollectionsAvailable ...
+func CollectionsAvailable(address string) ([]string, bool) {
 
 	path := "warehouse/" + address
 	response, err := exec.Command("ls", path).Output()
