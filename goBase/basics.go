@@ -125,7 +125,7 @@ func GetDocuments(address string) (string, bool) {
 //GetCollections ...
 func GetCollections(address string) ([]string, bool) {
 
-	Warehouse()
+	warehouse()
 
 	path := "warehouse/" + address
 	response, err := exec.Command("ls", path).Output()
@@ -179,8 +179,7 @@ func Delete(path string) bool {
 
 }
 
-//Warehouse ...
-func Warehouse() {
+func warehouse() {
 
 	db := "warehouse"
 	resp, err := exec.Command("ls").Output()
