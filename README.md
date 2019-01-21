@@ -8,12 +8,16 @@ computing needs, and at the same time be simple to use.
 
 We have made an attempt to bridge this gap, by developing GO-db.
 
-<h3>Why to use GO-db?</h3>
+<h4>Status: Under Development (Pre-Alpha),  currently supports operations via strings only</h4>
+
+<h3>First: Why to use GO-db?</h3>
 
 GO-db is a simple to use file based database, which is light, simple and efficient on resources. It has been designed with 
 simplicity in <strong>AIM</strong>. 
 
 <h3>Usage</h3>
+
+<hr>
 
 <h5>Saving</h5>
 
@@ -22,7 +26,20 @@ simplicity in <strong>AIM</strong>.
 Example:
 
 <code>gobase.Save("Test", "some data")</code><br>
-<code>gobase.Save("Random/Path/Test", "some data)</code>
+<code>gobase.Save("Random/Path/Test", "some data")</code>
+
+<hr>
+
+<h5>Retriving</h5>
+
+<code>gobase.Retrive(path string) (string, bool)</code>
+
+Example:
+
+<code>gobase.Retrive("Test")</code><br>
+<code>gobase.Retrive("Random/Path/Test")</code>
+
+<hr>
 
 
 
