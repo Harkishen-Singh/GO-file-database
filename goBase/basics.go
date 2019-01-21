@@ -125,6 +125,8 @@ func GetDocuments(address string) (string, bool) {
 //GetCollections ...
 func GetCollections(address string) ([]string, bool) {
 
+	Warehouse()
+
 	path := "warehouse/" + address
 	response, err := exec.Command("ls", path).Output()
 	if err != nil {
