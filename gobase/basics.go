@@ -22,7 +22,6 @@ func filter(text string) (string, bool) {
 
 func checkExistingDir(name string) bool {
 
-	name = "warehouse/" + name
 	_, err := exec.Command("ls", name).Output()
 	if err != nil {
 		return false
@@ -32,17 +31,56 @@ func checkExistingDir(name string) bool {
 
 func makeDir(name string) bool {
 
-	if !checkExistingDir(name) {
-		name = "warehouse/" + name
-		fmt.Println("hisssss:  " + name)
-		_, err := exec.Command("mkdir", name).Output()
-		if err != nil {
-			fmt.Println("Err makeDir")
-			panic(err)
+	name = "warehouse/" + name
+	/**
+		* returns the number of directories contained in the gien path [string]
+	*/
+	dirOccurence := func(path string) uint16 {
+		var occ uint16
+		for i:= 0; i< len(path); i++{
+			if path[i] == '/' {
+				occ++
+			}
 		}
+		return occ
+	}
+
+	/**
+		* creates new directories on name [string]
+	*/
+	createDirectoriesChain := func(name string) bool {
+		if !checkExistingDir(name) {
+			_, err := exec.Command("mkdir", "-p", name).Output()
+			if err != nil {
+				fmt.Println(err)
+			}
+			return true
+		}
+
+		return false
+	}
+
+	/**
+		* controls the process of creation of chained directories on path [string]
+	*/
+	directoryController := func(path string) bool {
+		fmt.Print("level1 ", path)
+		tempPath := path + "/"
+		createDirectoriesChain(tempPath)
+		return true
+	}
+
+	if dirOccurence(name) == uint16(1) {
+		if !checkExistingDir(name) {
+			_, err := exec.Command("mkdir", name).Output()
+			if err != nil {
+				panic(err)
+			}
+		}
+	} else {
+		directoryController(name)
 	}
 	return true
-
 }
 
 func collectionStatus(collectionPath string) bool {
