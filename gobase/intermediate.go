@@ -7,12 +7,11 @@ import (
 	"strings"
 	"os/exec"
 	"log"
-	"reflect"
 )
 
 
 //RetriveArr ...
-func RetriveArr(address *string) ([]string, bool) {
+func RetriveArr(address *string) ([]string, string, bool) {
 
 	var documentAvailable = collectionStatus(*address)
 	var data []string
@@ -20,13 +19,18 @@ func RetriveArr(address *string) ([]string, bool) {
 	if documentAvailable {
 		openfile, err := ioutil.ReadFile(*address)
 		if err != nil {
-			return []string{}, false
+			return []string{}, "", false
 		}
 		temp := string(openfile)
+		var typeData = "string"
+		if temp[0] != '[' {
+			typeData = temp[:6]
+			temp = temp[6:]
+		}
 		data = strings.Split(temp[1: len(temp) -1], ",")
-		return data, true
+		return data, typeData, true
 	}
-	return []string{}, false
+	return []string{}, "",false
 
 }
 
@@ -83,7 +87,7 @@ func SaveArr(path *string, dataArr []string) bool {
 
 }
 
-func saveArrCustom(path *string, dataArr []string, typeVar *reflect.Type) bool {
+func saveArrCustom(path *string, dataArr []string, pass uint16) bool {
 
 	exists := collectionStatus(*path)
 	if exists == false {
@@ -99,6 +103,45 @@ func saveArrCustom(path *string, dataArr []string, typeVar *reflect.Type) bool {
 	var dataString = "["
 	dataString += strings.Join(dataArr, ",")
 	dataString += "]"
+	var typeVar string
+
+	switch pass {
+
+	case 1:
+		typeVar = "_uint8"
+
+	case 2:
+		typeVar = "__int8"
+
+	case 3:
+		typeVar = "uint16"
+
+	case 4:
+		typeVar = "_int16"
+
+	case 5:
+		typeVar = "uint32"
+
+	case 6:
+		typeVar = "_int32"
+
+	case 7:
+		typeVar = "uint64"
+
+	case 8:
+		typeVar = "_int64"
+
+	case 9:
+		typeVar = "_flt32"
+
+	case 10:
+		typeVar = "_flt64"
+
+	case 11:
+		typeVar = "string"
+
+	}
+	dataString = typeVar + dataString
 	_, err = file.WriteString(dataString)
 	if err != nil {
 		fmt.Println("Error occured while writing the following data:")

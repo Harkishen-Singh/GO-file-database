@@ -8,10 +8,14 @@ import (
 
 func main() {
 	fmt.Println("GO-db is running")
-	gobase.Save("TestBase", "Random Test")
+	gobase.Save("TestBase", "Randot")
 	fmt.Println(gobase.CollectionsAvailable("/"))
 	fmt.Println(gobase.Retrive("TestBase"))
 	var app = "someArr/Test"
 	gobase.SaveArr(&app, []string{"Harkishen", "Singh"})
+	var addr = "someArrays/one"
+	var vals = []float64{2.3, 5.64, 96.5}
+	gobase.SaveArrFloat64(&addr, &vals)
+	fmt.Println(gobase.RetriveArr(&addr))
 }
 
