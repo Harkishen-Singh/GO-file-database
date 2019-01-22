@@ -3,6 +3,7 @@ package gobase
 import (
 	"fmt"
 	"strconv"
+	"reflect"
 )
 
 func preCondition(address *string) {
@@ -36,8 +37,9 @@ func SaveArrFloat32(address *string, data *[]float32) bool {
 		}
 		return temp
 	} (increasePrecision(data))
-
-	return SaveArr(address, *dataInString)
+	var types = *data
+	var typeAddress = reflect.TypeOf(types)
+	return saveArrCustom(address, *dataInString, &typeAddress)
 
 }
 
@@ -54,8 +56,9 @@ func SaveArrFloat64(address *string, data *[]float64) bool {
 		}
 		return temp
 	} (data)
-
-	return SaveArr(address, *dataInString)
+	var types = *data
+	var typeAddress = reflect.TypeOf(types)
+	return saveArrCustom(address, *dataInString, &typeAddress)
 
 }
 

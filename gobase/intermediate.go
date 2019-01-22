@@ -7,6 +7,7 @@ import (
 	"strings"
 	"os/exec"
 	"log"
+	"reflect"
 )
 
 
@@ -55,6 +56,34 @@ func CollectionsAvailableArr(address *string) ([]string, bool) {
 
 //SaveArr ...
 func SaveArr(path *string, dataArr []string) bool {
+
+	exists := collectionStatus(*path)
+	if exists == false {
+		fmt.Println("No Collection existing at the specified datapath. Creating one ...")
+		createCollection(*path)
+	}
+	var address = "warehouse/" + *path + ".data"
+	file, err := os.OpenFile(address, os.O_WRONLY, 0600)
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+	var dataString = "["
+	dataString += strings.Join(dataArr, ",")
+	dataString += "]"
+	_, err = file.WriteString(dataString)
+	if err != nil {
+		fmt.Println("Error occured while writing the following data:")
+		fmt.Println("\n" + dataString)
+		fmt.Println("Address: warehouse/"+address)
+		fmt.Println(err)
+		return false
+	}
+	return true
+
+}
+
+func saveArrCustom(path *string, dataArr []string, typeVar *reflect.Type) bool {
 
 	exists := collectionStatus(*path)
 	if exists == false {
