@@ -10,10 +10,14 @@ func SaveArrUint8(path *string, data *[]uint8) bool{
 	dataInString := func(data *[]uint8) *[]string {
 
 		var temp *[]string
+		final := []string{""}
+		temp = &final
 		for _,ele := range *data{
 			*temp = append(*temp, strconv.Itoa(int(ele)))
 		}
-		return temp
+		final = *temp
+		final = final[1:]
+		return &final
 	}(data)
 
 	return SaveArr(path, *dataInString)
@@ -27,10 +31,14 @@ func SaveArrUint16(path *string, data *[]uint16) bool{
 	dataInString := func(data *[]uint16) *[]string {
 
 		var temp *[]string
+		final := []string{""}
+		temp = &final
 		for _,ele := range *data{
 			*temp = append(*temp, strconv.Itoa(int(ele)))
 		}
-		return temp
+		final = *temp
+		final = final[1:]
+		return &final
 	}(data)
 
 	return SaveArr(path, *dataInString)
@@ -44,10 +52,14 @@ func SaveArrUint32(path *string, data *[]uint32) bool{
 	dataInString := func(data *[]uint32) *[]string {
 
 		var temp *[]string
+		final := []string{""}
+		temp = &final
 		for _,ele := range *data{
 			*temp = append(*temp, strconv.Itoa(int(ele)))
 		}
-		return temp
+		final = *temp
+		final = final[1:]
+		return &final
 	}(data)
 
 	return SaveArr(path, *dataInString)
@@ -61,10 +73,14 @@ func SaveArrUint64(path *string, data *[]uint64) bool{
 	dataInString := func(data *[]uint64) *[]string {
 
 		var temp *[]string
+		final := []string{""}
+		temp = &final
 		for _,ele := range *data{
 			*temp = append(*temp, strconv.Itoa(int(ele)))
 		}
-		return temp
+		final = *temp
+		final = final[1:]
+		return &final
 	}(data)
 
 	return SaveArr(path, *dataInString)
@@ -78,10 +94,14 @@ func SaveArrInt8(path *string, data *[]int8) bool{
 	dataInString := func(data *[]int8) *[]string {
 
 		var temp *[]string
+		final := []string{""}
+		temp = &final
 		for _,ele := range *data{
 			*temp = append(*temp, strconv.Itoa(int(ele)))
 		}
-		return temp
+		final = *temp
+		final = final[1:]
+		return &final
 	}(data)
 
 	return SaveArr(path, *dataInString)
@@ -95,10 +115,14 @@ func SaveArrInt16(path *string, data *[]int16) bool{
 	dataInString := func(data *[]int16) *[]string {
 
 		var temp *[]string
+		final := []string{""}
+		temp = &final
 		for _,ele := range *data{
 			*temp = append(*temp, strconv.Itoa(int(ele)))
 		}
-		return temp
+		final = *temp
+		final = final[1:]
+		return &final
 	}(data)
 
 	return SaveArr(path, *dataInString)
@@ -112,10 +136,14 @@ func SaveArrInt32(path *string, data *[]int32) bool{
 	dataInString := func(data *[]int32) *[]string {
 
 		var temp *[]string
+		final := []string{""}
+		temp = &final
 		for _,ele := range *data{
 			*temp = append(*temp, strconv.Itoa(int(ele)))
 		}
-		return temp
+		final = *temp
+		final = final[1:]
+		return &final
 	}(data)
 
 	return SaveArr(path, *dataInString)
@@ -129,10 +157,14 @@ func SaveArrInt64(path *string, data *[]int64) bool{
 	dataInString := func(data *[]int64) *[]string {
 
 		var temp *[]string
+		final := []string{""}
+		temp = &final
 		for _,ele := range *data{
 			*temp = append(*temp, strconv.Itoa(int(ele)))
 		}
-		return temp
+		final = *temp
+		final = final[1:]
+		return &final
 	}(data)
 
 	return SaveArr(path, *dataInString)
@@ -146,10 +178,14 @@ func SaveArrInt(path *string, data *[]int) bool{
 	dataInString := func(data *[]int) *[]string {
 
 		var temp *[]string
+		final := []string{""}
+		temp = &final
 		for _,ele := range *data{
 			*temp = append(*temp, strconv.Itoa(ele))
 		}
-		return temp
+		final = *temp
+		final = final[1:]
+		return &final
 	}(data)
 
 	return SaveArr(path, *dataInString)
