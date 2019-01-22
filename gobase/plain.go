@@ -1,4 +1,4 @@
-package main
+package gobase
 
 import (
 	"fmt"
@@ -22,7 +22,6 @@ func filter(text string) (string, bool) {
 
 func checkExistingDir(name string) bool {
 
-	name = "warehouse/" + name
 	_, err := exec.Command("ls", name).Output()
 	if err != nil {
 		return false
@@ -32,22 +31,61 @@ func checkExistingDir(name string) bool {
 
 func makeDir(name string) bool {
 
-	if !checkExistingDir(name) {
-		name = "warehouse/" + name
-		fmt.Println("hisssss:  " + name)
-		_, err := exec.Command("mkdir", name).Output()
-		if err != nil {
-			fmt.Println("Err makeDir")
-			panic(err)
+	name = "warehouse/" + name
+	/**
+		* returns the number of directories contained in the gien path [string]
+	*/
+	dirOccurence := func(path string) uint16 {
+		var occ uint16
+		for i:= 0; i< len(path); i++{
+			if path[i] == '/' {
+				occ++
+			}
 		}
+		return occ
+	}
+
+	/**
+		* creates new directories on name [string]
+	*/
+	createDirectoriesChain := func(name string) bool {
+		if !checkExistingDir(name) {
+			_, err := exec.Command("mkdir", "-p", name).Output()
+			if err != nil {
+				fmt.Println(err)
+			}
+			return true
+		}
+
+		return false
+	}
+
+	/**
+		* controls the process of creation of chained directories on path [string]
+	*/
+	directoryController := func(path string) bool {
+		fmt.Print("level1 ", path)
+		tempPath := path + "/"
+		createDirectoriesChain(tempPath)
+		return true
+	}
+
+	if dirOccurence(name) == uint16(1) {
+		if !checkExistingDir(name) {
+			_, err := exec.Command("mkdir", name).Output()
+			if err != nil {
+				panic(err)
+			}
+		}
+	} else {
+		directoryController(name)
 	}
 	return true
-
 }
 
 func collectionStatus(collectionPath string) bool {
-	// checking current files in warehouse
 
+	warehouse() // check warehouse availability
 	res := strings.LastIndex(collectionPath, "/")
 	var subPath string
 	if res != -1 {
@@ -64,8 +102,6 @@ func collectionStatus(collectionPath string) bool {
 		return false
 	}
 	var existingFiles = strings.Split(string(result), "\n")
-	fmt.Println("Existing files in warehouse/")
-	fmt.Println(existingFiles)
 	var checkStatus bool
 
 	for _, element := range existingFiles {
@@ -85,7 +121,7 @@ func collectionStatus(collectionPath string) bool {
 func createCollection(address string) bool {
 
 	address = "warehouse/" + address + ".data"
-	err := ioutil.WriteFile(address, []byte(""), 0777)
+	err := ioutil.WriteFile(address, []byte("default"), 0777)
 	if err != nil {
 		fmt.Println("Error in createCollection Address: "+address)
 		fmt.Println(err)
@@ -95,20 +131,8 @@ func createCollection(address string) bool {
 
 }
 
-func readCollection(address string) (string, bool) {
-
-	address = "warehouse/" + address + ".data"
-	file, err := ioutil.ReadFile(address)
-	if err != nil {
-		fmt.Println("Error while reading the collection at Address: " + address)
-		return "", false
-	}
-	return string(file), true
-
-}
-
-//GetDocuments ...
-func GetDocuments(address string) (string, bool) {
+//Retrive ...
+func Retrive(address string) (string, bool) {
 
 	var documentAvailable = collectionStatus(address)
 	var data string
@@ -125,18 +149,26 @@ func GetDocuments(address string) (string, bool) {
 
 }
 
-//GetCollections ...
-func GetCollections(address string) ([]string, bool) {
+//CollectionsAvailable ...
+func CollectionsAvailable(address string) ([]string, bool) {
 
-	path := "warehouse/" + address
-	response, err := exec.Command("ls", path).Output()
-	if err != nil {
-		fmt.Println("Error while looking for Collections, at Address: "+address)
-		log.Fatal(err)
+	var existingCollections []string
+	if address != "/" {
+		path := "warehouse/" + address
+		response, err := exec.Command("ls", path).Output()
+		if err != nil {
+			fmt.Println("Error while looking for Collections, at Address: "+address)
+			log.Fatal(err)
+		}
+		existingCollections = strings.Split(string(response), "\n")
+	} else {
+		response, err := exec.Command("ls", "warehouse/").Output()
+		if err != nil {
+			fmt.Println("Error while looking for Collections, at Address: "+address)
+			log.Fatal(err)
+		}
+		existingCollections = strings.Split(string(response), "\n")
 	}
-	var existingCollections = strings.Split(string(response), "\n")
-	fmt.Println("Present collections at Address: ", address)
-	fmt.Println(existingCollections)
 	return existingCollections, true
 
 }
@@ -150,12 +182,11 @@ func Save(path string, data string) bool {
 		createCollection(path)
 	}
 	var address = "warehouse/" + path + ".data"
-	file, err := os.OpenFile(address, os.O_APPEND|os.O_WRONLY, 0600)
+	file, err := os.OpenFile(address, os.O_WRONLY, 0600)
 	if err != nil {
-		fmt.Println("second err here")
 		panic(err)
 	}
-	data = "\n" + data
+	defer file.Close()
 	_, err = file.WriteString(data)
 	if err != nil {
 		fmt.Println("Error occured while writing the following data:")
@@ -183,7 +214,23 @@ func Delete(path string) bool {
 
 }
 
-func main() {
-	// Save("test2/test333" ,"Harkishen singh is the bestest")
-	Delete("test2/")
+func warehouse() {
+
+	db := "warehouse"
+	resp, err := exec.Command("ls").Output()
+	if err != nil {
+		panic(err)
+	}
+	var checkWarehouse bool
+	var respStringArr = strings.Split(string(resp), "\n")
+	for _, ele := range respStringArr {
+		if ele == "warehouse" {
+			checkWarehouse = true
+			break
+		}
+	}
+	if !checkWarehouse {
+		exec.Command("mkdir", db).Output()
+	}
+
 }
