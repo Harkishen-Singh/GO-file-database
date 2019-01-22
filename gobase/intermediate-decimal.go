@@ -32,11 +32,17 @@ func SaveArrFloat32(address *string, data *[]float32) bool {
 	dataInString := func (data *[]float64) *[]string {
 
 		var temp *[]string
+		final := []string{""}
+		temp = &final
+
 		for _, ele := range *data {
 			*temp = append(*temp, strconv.FormatFloat(ele, 'E', -1, 32))
 		}
-		return temp
+		final = *temp
+		final = final[1:]
+		return &final
 	} (increasePrecision(data))
+
 	var types = *data
 	var typeAddress = reflect.TypeOf(types)
 	return saveArrCustom(address, *dataInString, &typeAddress)
@@ -51,14 +57,19 @@ func SaveArrFloat64(address *string, data *[]float64) bool {
 	dataInString := func (data *[]float64) *[]string {
 
 		var temp *[]string
+		final := []string{""}
+		temp = &final
 		for _, ele := range *data {
 			*temp = append(*temp, strconv.FormatFloat(ele, 'E', -1, 32))
 		}
-		return temp
+		final = *temp
+		final = final[1:]
+		return &final
 	} (data)
+
+
 	var types = *data
 	var typeAddress = reflect.TypeOf(types)
 	return saveArrCustom(address, *dataInString, &typeAddress)
 
 }
-

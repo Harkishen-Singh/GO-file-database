@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/Harkishen-Singh/GO-db/gobase"
+	// "./gobase"
 )
 
 func main() {
@@ -13,3 +14,4 @@ func main() {
 	var app = "someArr/Test"
 	gobase.SaveArr(&app, []string{"Harkishen", "Singh"})
 }
+

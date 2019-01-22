@@ -1,2 +1,5 @@
 warehouse/
 gobase/warehouse/
+test.go
+tests/warehouse
+tests/
