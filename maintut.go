@@ -16,3 +16,4 @@ func main() {
 	gobase.SaveArr(&app, []string{"Harkishen", "Singh"})
 	gobase.SaveArrFloat64(&app, &b)
 }
+}
