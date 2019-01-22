@@ -12,8 +12,6 @@ func main() {
 	fmt.Println(gobase.CollectionsAvailable("/"))
 	fmt.Println(gobase.Retrive("TestBase"))
 	var app = "someArr/Test"
-	b := []float64{1, 2, 3, 4, 5}
 	gobase.SaveArr(&app, []string{"Harkishen", "Singh"})
-	gobase.SaveArrFloat64(&app, &b)
 }
 

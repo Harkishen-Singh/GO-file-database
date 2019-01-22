@@ -58,7 +58,7 @@ func SaveArrFloat64(address *string, data *[]float64) bool {
 
 		var temp *[]string
 		final := []string{""}
-		temp = &x
+		temp = &final
 		for _, ele := range *data {
 			*temp = append(*temp, strconv.FormatFloat(ele, 'E', -1, 32))
 		}
