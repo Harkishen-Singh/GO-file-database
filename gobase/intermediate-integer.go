@@ -1,18 +1,6 @@
 package gobase
 
-import(
-	// "fmt"
-	"strconv"
-)
-
-// func preCondition(address *string){
-
-// 	exists := collectionStatus(*address)
-// 	if exists == false {
-// 		fmt.Println("No Collection existing at the specified datapath. Creating one ...")
-// 		createCollection(*address)
-// 	}
-// }
+import "strconv"
 
 //SaveArrUint8 ...
 func SaveArrUint8(path *string, data *[]uint8) bool{
