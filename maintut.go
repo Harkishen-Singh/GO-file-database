@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	// "github.com/Harkishen-Singh/GO-db/gobase"
-	"./gobase"
+	"github.com/Harkishen-Singh/GO-db/gobase"
+	// "./gobase"
 )
 
 func main() {
@@ -16,4 +16,4 @@ func main() {
 	gobase.SaveArr(&app, []string{"Harkishen", "Singh"})
 	gobase.SaveArrFloat64(&app, &b)
 }
-}
+
