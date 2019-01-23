@@ -1,8 +1,7 @@
-package tests
+package gobase
 
 import (
 	"testing"
-	"github.com/Harkishen-Singh/GO-file-database/gobase"
 )
 
 func TestPlain(t *testing.T) {
@@ -17,17 +16,17 @@ func TestPlain(t *testing.T) {
 
 	// save operations
 
-	gobase.Save(location1, value1)
-	gobase.Save(location2, value2)
-	gobase.Save(location3, value3)
-	gobase.Save(location4, value4)
+	Save(location1, value1)
+	Save(location2, value2)
+	Save(location3, value3)
+	Save(location4, value4)
 
 	// retrive operations
 
-	retr1, status1 = gobase.Retrive(location1)
-	retr2, status2 = gobase.Retrive(location2)
-	retr3, status3 = gobase.Retrive(location3)
-	retr4, status4 = gobase.Retrive(location4)
+	retr1, status1 = Retrive(location1)
+	retr2, status2 = Retrive(location2)
+	retr3, status3 = Retrive(location3)
+	retr4, status4 = Retrive(location4)
 
 	// checks
 
