@@ -53,8 +53,9 @@ func TestSaveArr(t *testing.T) {
 		}
 
 	}
-	// gobase.Delete(testObjects[0].location)
-	// gobase.Delete(testObjects[2].location)
-	// gobase.Delete(testObjects[3].location)
+	gobase.Delete(testObjects[0].location)
+	gobase.Delete(testObjects[1].location)
+	gobase.Delete(testObjects[2].location)
+	gobase.Delete(testObjects[3].location)
 
 }

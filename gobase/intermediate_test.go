@@ -54,8 +54,9 @@ func TestSaveArr(t *testing.T) {
 
 	}
 
-	// Delete(testObjects[0].location)
-	// Delete(testObjects[2].location)
-	// Delete(testObjects[3].location)
+	Delete(testObjects[0].location)
+	Delete(testObjects[1].location)
+	Delete(testObjects[2].location)
+	Delete(testObjects[3].location)
 
 }

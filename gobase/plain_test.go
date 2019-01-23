@@ -36,8 +36,9 @@ func TestPlain(t *testing.T) {
 
 	}
 
-	// Delete(plainTests[0].location)
-	// Delete(plainTests[2].location)
-	// Delete(plainTests[3].location)
+	Delete(plainTests[0].location)
+	Delete(plainTests[1].location)
+	Delete(plainTests[2].location)
+	Delete(plainTests[3].location)
 
 }
