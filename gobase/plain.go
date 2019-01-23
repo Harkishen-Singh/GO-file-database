@@ -124,9 +124,7 @@ func createCollection(address string) bool {
 
 	address = EnvironmentPath + "warehouse/" + address + ".data"
 	var ss = strings.LastIndex(address, "/")
-	fmt.Println("Address is : "+address)
 	var pathx = address[:ss]
-	// var filename = address[ss+1:]
 	exec.Command("mkdir", "-p", pathx).Output()
 	_, err := exec.Command("touch", address).Output()
 
@@ -163,7 +161,6 @@ func CollectionsAvailable(address string) ([]string, bool) {
 	var existingCollections []string
 	if address != "/" {
 		path := EnvironmentPath + "warehouse/" + address
-fmt.Println("path is ", path)
 		response, err := exec.Command("ls", path).Output()
 		if err != nil {
 			fmt.Println("Error while looking for Collections, at Address: "+address)
