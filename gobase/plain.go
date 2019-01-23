@@ -10,6 +10,8 @@ import (
 )
 
 const separator = ".##."
+//EnvironmentPath ...
+var EnvironmentPath = os.Getenv("GOPATH") + "/src/github.com/Harkishen-Singh/GO-file-database/"
 
 func filter(text string) (string, bool) {
 
@@ -31,7 +33,7 @@ func checkExistingDir(name string) bool {
 
 func makeDir(name string) bool {
 
-	name = "warehouse/" + name
+	name = EnvironmentPath + "warehouse/" + name
 	/**
 		* returns the number of directories contained in the gien path [string]
 	*/
@@ -64,7 +66,6 @@ func makeDir(name string) bool {
 		* controls the process of creation of chained directories on path [string]
 	*/
 	directoryController := func(path string) bool {
-		fmt.Print("level1 ", path)
 		tempPath := path + "/"
 		createDirectoriesChain(tempPath)
 		return true
@@ -95,7 +96,7 @@ func collectionStatus(collectionPath string) bool {
 			os.Exit(50005)
 		}
 	}
-	expAddr := "warehouse/" + subPath
+	expAddr := EnvironmentPath + "warehouse/" + subPath
 	result, err := exec.Command("ls", expAddr).Output()
 	if err != nil {
 		fmt.Println("Path not found!")
@@ -120,7 +121,7 @@ func collectionStatus(collectionPath string) bool {
 
 func createCollection(address string) bool {
 
-	address = "warehouse/" + address + ".data"
+	address = EnvironmentPath + "warehouse/" + address + ".data"
 	err := ioutil.WriteFile(address, []byte("default"), 0777)
 	if err != nil {
 		fmt.Println("Error in createCollection Address: "+address)
@@ -136,7 +137,7 @@ func Retrive(address string) (string, bool) {
 
 	var documentAvailable = collectionStatus(address)
 	var data string
-	address = "warehouse/" + address + ".data"
+	address = EnvironmentPath + "warehouse/" + address + ".data"
 	if documentAvailable {
 		openfile, err := ioutil.ReadFile(address)
 		if err != nil {
@@ -154,7 +155,7 @@ func CollectionsAvailable(address string) ([]string, bool) {
 
 	var existingCollections []string
 	if address != "/" {
-		path := "warehouse/" + address
+		path := EnvironmentPath + "warehouse/" + address
 		response, err := exec.Command("ls", path).Output()
 		if err != nil {
 			fmt.Println("Error while looking for Collections, at Address: "+address)
@@ -181,7 +182,8 @@ func Save(path string, data string) bool {
 		fmt.Println("No Collection existing at the specified datapath. Creating one ...")
 		createCollection(path)
 	}
-	var address = "warehouse/" + path + ".data"
+	var address = EnvironmentPath + "warehouse/" + path + ".data"
+	fmt.Println(address)
 	file, err := os.OpenFile(address, os.O_WRONLY, 0600)
 	file.Seek(0, 0)
 	file.Truncate(0)
@@ -204,7 +206,7 @@ func Save(path string, data string) bool {
 //Delete ...
 func Delete(path string) bool {
 
-	path = "warehouse/" + path
+	path = EnvironmentPath + "warehouse/" + path
 	_, err := exec.Command("rm", "-R", path).Output()
 	if err != nil {
 		_, err2 := exec.Command("rm", "-R", path + ".data").Output()
@@ -219,7 +221,7 @@ func Delete(path string) bool {
 func warehouse() {
 
 	db := "warehouse"
-	resp, err := exec.Command("ls").Output()
+	resp, err := exec.Command("ls", EnvironmentPath).Output()
 	if err != nil {
 		panic(err)
 	}
