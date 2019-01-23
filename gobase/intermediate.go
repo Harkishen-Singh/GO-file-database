@@ -72,7 +72,7 @@ func SaveArr(path *string, dataArr []string) bool {
 		panic(err)
 	}
 	defer file.Close()
-	var dataString = "["
+	var dataString = "string["
 	dataString += strings.Join(dataArr, ",")
 	dataString += "]"
 	_, err = file.WriteString(dataString)
