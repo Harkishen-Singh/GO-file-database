@@ -20,7 +20,7 @@ func SaveArrUint8(path *string, data *[]uint8) bool{
 		return &final
 	}(data)
 
-	return SaveArr(path, *dataInString)
+	return saveArrCustom(path, *dataInString,1)
 }
 
 //SaveArrUint16 ...
@@ -41,7 +41,7 @@ func SaveArrUint16(path *string, data *[]uint16) bool{
 		return &final
 	}(data)
 
-	return SaveArr(path, *dataInString)
+	return saveArrCustom(path, *dataInString,3)
 }
 
 //SaveArrUint32 ...
@@ -62,7 +62,7 @@ func SaveArrUint32(path *string, data *[]uint32) bool{
 		return &final
 	}(data)
 
-	return SaveArr(path, *dataInString)
+	return saveArrCustom(path, *dataInString,5)
 }
 
 //SaveArrUint64 ...
@@ -83,7 +83,7 @@ func SaveArrUint64(path *string, data *[]uint64) bool{
 		return &final
 	}(data)
 
-	return SaveArr(path, *dataInString)
+	return saveArrCustom(path, *dataInString,7)
 }
 
 //SaveArrInt8 ...
@@ -104,7 +104,7 @@ func SaveArrInt8(path *string, data *[]int8) bool{
 		return &final
 	}(data)
 
-	return SaveArr(path, *dataInString)
+	return saveArrCustom(path, *dataInString,2)
 }
 
 //SaveArrInt16 ...
@@ -125,7 +125,7 @@ func SaveArrInt16(path *string, data *[]int16) bool{
 		return &final
 	}(data)
 
-	return SaveArr(path, *dataInString)
+	return saveArrCustom(path, *dataInString,4)
 }
 
 //SaveArrInt32 ...
@@ -146,7 +146,7 @@ func SaveArrInt32(path *string, data *[]int32) bool{
 		return &final
 	}(data)
 
-	return SaveArr(path, *dataInString)
+	return saveArrCustom(path, *dataInString,6)
 }
 
 //SaveArrInt64 ...
@@ -167,7 +167,7 @@ func SaveArrInt64(path *string, data *[]int64) bool{
 		return &final
 	}(data)
 
-	return SaveArr(path, *dataInString)
+	return saveArrCustom(path, *dataInString,8)
 }
 
 //SaveArrInt ...
@@ -188,5 +188,5 @@ func SaveArrInt(path *string, data *[]int) bool{
 		return &final
 	}(data)
 
-	return SaveArr(path, *dataInString)
+	return saveArrCustom(path, *dataInString,9)
 }
