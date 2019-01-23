@@ -29,9 +29,9 @@ func TestPlain_tests(t *testing.T) {
 	for _,ele := range plainTests {
 
 		// Save Operation
-		gobase.Save(&(ele.location), &ele.value)
+		gobase.Save(ele.location, &ele.value)
  		// Retrive Operation
-		ele.retr, ele.typedata, ele.status = gobase.Retrive(&(ele.location))
+		ele.retr, ele.typedata, ele.status = gobase.Retrive(ele.location)
 		fmt.Println("Original: ", ele)
 		fmt.Println("Received: ", ele)
 
@@ -39,12 +39,10 @@ func TestPlain_tests(t *testing.T) {
 			t.Errorf("Tests failed for location: %s | value: %s | received status: %t | received value: %s", ele.location, ele.value, ele.status, ele.retr)
 		}
 
-	}
+		//Delete Operation
+		gobase.Delete(ele.location)
 
-	gobase.Delete(plainTests[0].location)
-	gobase.Delete(plainTests[1].location)
-	gobase.Delete(plainTests[2].location)
-	gobase.Delete(plainTests[3].location)
+	}
 
 }
 
