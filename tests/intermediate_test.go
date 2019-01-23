@@ -53,9 +53,11 @@ func TestSaveArr_tests(t *testing.T) {
 			t.Errorf("Tests failed for location: %s | value: %s | received status: %t | received value: %s", ele.location, ele.data, ele.status, ele.retri)
 		}
 
-		//Delete Operation
-		gobase.Delete(ele.location)
-
 	}
+	//Delete Operation
+	gobase.Delete(testObjects[0].location)
+	gobase.Delete(testObjects[1].location)
+	gobase.Delete(testObjects[2].location)
+	gobase.Delete(testObjects[3].location)
 
 }

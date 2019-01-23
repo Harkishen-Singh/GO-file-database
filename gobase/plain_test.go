@@ -2,7 +2,7 @@ package gobase
 
 import (
 	"testing"
-	// "fmt"
+	"fmt"
 )
 
 type plainContainer struct {
@@ -37,8 +37,12 @@ func TestPlain(t *testing.T) {
 			t.Errorf("Tests failed for location: %s | value: %s | received status: %t | received value: %s", ele.location, ele.value, ele.status, ele.retr)
 		}
 
-		//Delete Operation
-		Delete(ele.location)
 	}
+
+	// Delete Operation
+	Delete(plainTests[0].location)
+	Delete(plainTests[1].location)
+	Delete(plainTests[2].location)
+	Delete(plainTests[3].location)
 
 }
