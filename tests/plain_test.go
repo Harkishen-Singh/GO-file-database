@@ -2,8 +2,8 @@ package tests
 
 import (
 	"testing"
-	"github.com/Harkishen-Singh/GO-file-database/gobase"
-	//"../gobase"
+	// "github.com/Harkishen-Singh/GO-file-database/gobase"
+	"../gobase"
 )
 
 type plainContainer struct {
@@ -38,4 +38,3 @@ func TestPlain(t *testing.T) {
 
 }
 
-	
