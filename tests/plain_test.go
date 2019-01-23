@@ -2,7 +2,7 @@ package tests
 
 import (
 	"testing"
-	"../gobase"
+	"github.com/Harkishen-Singh/GO-file-database/gobase"
 )
 
 func TestPlain(t *testing.T) {
