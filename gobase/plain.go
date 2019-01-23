@@ -132,20 +132,23 @@ func createCollection(address string) bool {
 }
 
 //Retrive ...
-func Retrive(address string) (string, bool) {
+func Retrive(address *string) (string, string, bool) {
 
-	var documentAvailable = collectionStatus(address)
+	var documentAvailable = collectionStatus(*address)
 	var data string
-	address = "warehouse/" + address + ".data"
+	var datatype string
+	*address = "warehouse/" + *address + ".data"
 	if documentAvailable {
-		openfile, err := ioutil.ReadFile(address)
+		openfile, err := ioutil.ReadFile(*address)
 		if err != nil {
-			return "ERROR", false
+			return "ERROR", "", false
 		}
 		data = string(openfile)
-		return data, true
+		datatype = data[:6]
+		data = data[6:]
+		return data, datatype, true
 	}
-	return "DOCUMENT_UNAVAILABLE", false
+	return "DOCUMENT_UNAVAILABLE", "", false
 
 }
 
@@ -174,30 +177,9 @@ func CollectionsAvailable(address string) ([]string, bool) {
 }
 
 //Save ...
-func Save(path string, data string) bool {
+func Save(path *string, data *string) bool {
 
-	exists := collectionStatus(path)
-	if exists == false {
-		fmt.Println("No Collection existing at the specified datapath. Creating one ...")
-		createCollection(path)
-	}
-	var address = "warehouse/" + path + ".data"
-	file, err := os.OpenFile(address, os.O_WRONLY, 0600)
-	file.Seek(0, 0)
-	file.Truncate(0)
-	if err != nil {
-		panic(err)
-	}
-	defer file.Close()
-	_, err = file.WriteString(data)
-	if err != nil {
-		fmt.Println("Error occured while writing the following data:")
-		fmt.Println("\n" + data)
-		fmt.Println("Address: warehouse/"+address)
-		fmt.Println(err)
-		return false
-	}
-	return true
+	saveCustom(path, *data, 12)
 
 }
 
