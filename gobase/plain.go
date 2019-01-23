@@ -203,6 +203,75 @@ func Save(path string, data string) bool {
 
 }
 
+func saveCustom(path *string, data string, pass uint16) bool {
+
+	exists := collectionStatus(*path)
+	if exists == false {
+		fmt.Println("No Collection existing at the specified datapath. Creating one ...")
+		createCollection(*path)
+	}
+	var address = "warehouse/" + *path + ".data"
+	file, err := os.OpenFile(address, os.O_WRONLY, 0600)
+	file.Seek(0, 0)
+	file.Truncate(0)
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	var typeVar string
+
+	switch pass {
+
+	case 1:
+		typeVar = "_uint8"
+
+	case 2:
+		typeVar = "__int8"
+
+	case 3:
+		typeVar = "uint16"
+
+	case 4:
+		typeVar = "_int16"
+
+	case 5:
+		typeVar = "uint32"
+
+	case 6:
+		typeVar = "_int32"
+
+	case 7:
+		typeVar = "uint64"
+
+	case 8:
+		typeVar = "_int64"
+
+	case 9:
+		typeVar = "___int"
+
+	case 10:
+		typeVar = "_flt32"
+
+	case 11:
+		typeVar = "_flt64"
+
+	case 12:
+		typeVar = "string"
+	}
+	data = typeVar + data
+
+	_, err = file.WriteString(data)
+	if err != nil {
+		fmt.Println("Error occured while writing the following data:")
+		fmt.Println("\n" + data)
+		fmt.Println("Address: warehouse/"+address)
+		fmt.Println(err)
+		return false
+	}
+	return true
+}
+
 //Delete ...
 func Delete(path string) bool {
 
