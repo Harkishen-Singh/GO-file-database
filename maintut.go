@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/Harkishen-Singh/GO-db/gobase"
+	"github.com/Harkishen-Singh/GO-file-database/gobase"
 	// "./gobase"
 )
 

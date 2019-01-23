@@ -1,5 +1,5 @@
 warehouse/
 gobase/warehouse/
 test.go
-tests/warehouse
-tests/
+# tests/warehouse
+test/
