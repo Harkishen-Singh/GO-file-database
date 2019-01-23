@@ -183,6 +183,8 @@ func Save(path string, data string) bool {
 	}
 	var address = "warehouse/" + path + ".data"
 	file, err := os.OpenFile(address, os.O_WRONLY, 0600)
+	file.Seek(0, 0)
+	file.Truncate(0)
 	if err != nil {
 		panic(err)
 	}
