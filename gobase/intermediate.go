@@ -72,7 +72,7 @@ func SaveArr(path *string, dataArr []string) bool {
 		panic(err)
 	}
 	defer file.Close()
-	var dataString = "string["
+	var dataString = "["
 	dataString += strings.Join(dataArr, ",")
 	dataString += "]"
 	_, err = file.WriteString(dataString)
@@ -139,9 +139,6 @@ func saveArrCustom(path *string, dataArr []string, pass uint16) bool {
 
 	case 11:
 		typeVar = "_flt64"
-
-	case 12:
-		typeVar = "string"
 
 	}
 	dataString = typeVar + dataString
