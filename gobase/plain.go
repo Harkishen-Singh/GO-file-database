@@ -34,6 +34,7 @@ func checkExistingDir(name string) bool {
 func makeDir(name string) bool {
 
 	name = EnvironmentPath + "warehouse/" + name
+	fmt.Println("make dir path: "+name)
 	/**
 		* returns the number of directories contained in the gien path [string]
 	*/
@@ -91,12 +92,12 @@ func collectionStatus(collectionPath string) bool {
 	var subPath string
 	if res != -1 {
 		subPath = collectionPath[0: res]
-
 		if !makeDir(subPath) {
 			os.Exit(50005)
 		}
 	}
 	expAddr := EnvironmentPath + "warehouse/" + subPath
+	fmt.Println("expAddr is : "+expAddr)
 	result, err := exec.Command("ls", expAddr).Output()
 	if err != nil {
 		fmt.Println("Path not found!")
@@ -122,7 +123,13 @@ func collectionStatus(collectionPath string) bool {
 func createCollection(address string) bool {
 
 	address = EnvironmentPath + "warehouse/" + address + ".data"
-	err := ioutil.WriteFile(address, []byte("default"), 0777)
+	var ss = strings.LastIndex(address, "/")
+	fmt.Println("Address is : "+address)
+	var pathx = address[:ss]
+	// var filename = address[ss+1:]
+	exec.Command("mkdir", "-p", pathx).Output()
+	_, err := exec.Command("touch", address).Output()
+
 	if err != nil {
 		fmt.Println("Error in createCollection Address: "+address)
 		fmt.Println(err)
@@ -156,6 +163,7 @@ func CollectionsAvailable(address string) ([]string, bool) {
 	var existingCollections []string
 	if address != "/" {
 		path := EnvironmentPath + "warehouse/" + address
+fmt.Println("path is ", path)
 		response, err := exec.Command("ls", path).Output()
 		if err != nil {
 			fmt.Println("Error while looking for Collections, at Address: "+address)
@@ -163,7 +171,7 @@ func CollectionsAvailable(address string) ([]string, bool) {
 		}
 		existingCollections = strings.Split(string(response), "\n")
 	} else {
-		response, err := exec.Command("ls", "warehouse/").Output()
+		response, err := exec.Command("ls", EnvironmentPath + "warehouse/").Output()
 		if err != nil {
 			fmt.Println("Error while looking for Collections, at Address: "+address)
 			log.Fatal(err)
@@ -210,7 +218,8 @@ func saveCustom(path *string, data string, pass uint16) bool {
 		fmt.Println("No Collection existing at the specified datapath. Creating one ...")
 		createCollection(*path)
 	}
-	var address = "warehouse/" + *path + ".data"
+
+	var address = EnvironmentPath + "warehouse/" + *path + ".data"
 	file, err := os.OpenFile(address, os.O_WRONLY, 0600)
 	file.Seek(0, 0)
 	file.Truncate(0)
@@ -265,7 +274,7 @@ func saveCustom(path *string, data string, pass uint16) bool {
 	if err != nil {
 		fmt.Println("Error occured while writing the following data:")
 		fmt.Println("\n" + data)
-		fmt.Println("Address: warehouse/"+address)
+		fmt.Println("Address: warehouse/"+*path)
 		fmt.Println(err)
 		return false
 	}

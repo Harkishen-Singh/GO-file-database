@@ -9,7 +9,7 @@ func SaveUint8(path *string, data *uint8) bool {
 
 	var dataInString string
 	dataInString = strconv.Itoa(int(*data))
-	
+
 	return saveCustom(path, dataInString, 1)
 }
 
@@ -20,7 +20,7 @@ func SaveInt8(path *string, data *int8) bool {
 
 	var dataInString string
 	dataInString = strconv.Itoa(int(*data))
-	
+
 	return saveCustom(path, dataInString, 2)
 }
 
@@ -31,7 +31,7 @@ func SaveUint16(path *string, data *uint16) bool {
 
 	var dataInString string
 	dataInString = strconv.Itoa(int(*data))
-	
+
 	return saveCustom(path, dataInString, 3)
 }
 
@@ -42,7 +42,7 @@ func SaveInt16(path *string, data *int16) bool {
 
 	var dataInString string
 	dataInString = strconv.Itoa(int(*data))
-	
+
 	return saveCustom(path, dataInString, 4)
 }
 
@@ -53,7 +53,7 @@ func SaveUint32(path *string, data *uint32) bool {
 
 	var dataInString string
 	dataInString = strconv.Itoa(int(*data))
-	
+
 	return saveCustom(path, dataInString, 5)
 }
 
@@ -64,7 +64,7 @@ func SaveInt32(path *string, data *int32) bool {
 
 	var dataInString string
 	dataInString = strconv.Itoa(int(*data))
-	
+
 	return saveCustom(path, dataInString, 6)
 }
 
@@ -75,7 +75,7 @@ func SaveUint64(path *string, data *uint64) bool {
 
 	var dataInString string
 	dataInString = strconv.Itoa(int(*data))
-	
+
 	return saveCustom(path, dataInString, 7)
 }
 
@@ -87,7 +87,7 @@ func SaveInt64(path *string, data *int64) bool {
 
 	var dataInString string
 	dataInString = strconv.Itoa(int(*data))
-	
+
 	return saveCustom(path, dataInString, 8)
 }
 
@@ -98,7 +98,7 @@ func SaveInt(path *string, data *int) bool {
 
 	var dataInString string
 	dataInString = strconv.Itoa(int(*data))
-	
+
 	return saveCustom(path, dataInString, 9)
 }
 

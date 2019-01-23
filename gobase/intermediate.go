@@ -15,7 +15,7 @@ func RetriveArr(address *string) ([]string, string, bool) {
 
 	var documentAvailable = collectionStatus(*address)
 	var data []string
-	*address = "warehouse/" + *address + ".data"
+	*address = EnvironmentPath + "warehouse/" + *address + ".data"
 	if documentAvailable {
 		openfile, err := ioutil.ReadFile(*address)
 		if err != nil {
@@ -23,10 +23,8 @@ func RetriveArr(address *string) ([]string, string, bool) {
 		}
 		temp := string(openfile)
 		var typeData string
-		// if temp[0] != '[' {
-			typeData = temp[:6]
-			temp = temp[6:]
-		// }
+		typeData = temp[:6]
+		temp = temp[6:]
 		data = strings.Split(temp[1: len(temp) -1], ",")
 		return data, typeData, true
 	}
@@ -39,7 +37,7 @@ func CollectionsAvailableArr(address *string) ([]string, bool) {
 
 	var existingCollections []string
 	if *address != "/" {
-		path := "warehouse/" + *address
+		path := EnvironmentPath + "warehouse/" + *address
 		response, err := exec.Command("ls", path).Output()
 		if err != nil {
 			fmt.Println("Error while looking for Collections, at Address: "+*address)
@@ -47,7 +45,7 @@ func CollectionsAvailableArr(address *string) ([]string, bool) {
 		}
 		existingCollections = strings.Split(string(response), "\n")
 	} else {
-		response, err := exec.Command("ls", "warehouse/").Output()
+		response, err := exec.Command("ls", EnvironmentPath + "warehouse/").Output()
 		if err != nil {
 			fmt.Println("Error while looking for Collections, at Address: "+*address)
 			log.Fatal(err)
@@ -72,7 +70,7 @@ func saveArrCustom(path *string, dataArr []string, pass uint16) bool {
 		fmt.Println("No Collection existing at the specified datapath. Creating one ...")
 		createCollection(*path)
 	}
-	var address = "warehouse/" + *path + ".data"
+	var address = EnvironmentPath + "warehouse/" + *path + ".data"
 	file, err := os.OpenFile(address, os.O_WRONLY, 0600)
 	file.Seek(0, 0)
 	file.Truncate(0)
