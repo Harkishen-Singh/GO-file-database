@@ -38,5 +38,9 @@ func TestPlain(t *testing.T) {
 
 	}
 
+	// gobase.Delete(plainTests[0].location)
+	// gobase.Delete(plainTests[2].location)
+	// gobase.Delete(plainTests[3].location)
+
 }
 

@@ -67,7 +67,6 @@ func saveArrCustom(path *string, dataArr []string, pass uint16) bool {
 
 	exists := collectionStatus(*path)
 	if exists == false {
-		fmt.Println("No Collection existing at the specified datapath. Creating one ...")
 		createCollection(*path)
 	}
 	var address = EnvironmentPath + "warehouse/" + *path + ".data"

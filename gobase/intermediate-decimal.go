@@ -1,7 +1,6 @@
 package gobase
 
 import (
-	"fmt"
 	"strconv"
 )
 
@@ -9,7 +8,6 @@ func preCondition(address *string) {
 
 	exists := collectionStatus(*address)
 	if exists == false {
-		fmt.Println("No Collection existing at the specified datapath. Creating one ...")
 		createCollection(*address)
 	}
 

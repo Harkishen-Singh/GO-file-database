@@ -98,7 +98,6 @@ func collectionStatus(collectionPath string) bool {
 	expAddr := EnvironmentPath + "warehouse/" + subPath
 	result, err := exec.Command("ls", expAddr).Output()
 	if err != nil {
-		fmt.Println("Path not found!")
 		return false
 	}
 	var existingFiles = strings.Split(string(result), "\n")
@@ -191,7 +190,6 @@ func saveCustom(path *string, data string, pass uint16) bool {
 
 	exists := collectionStatus(*path)
 	if exists == false {
-		fmt.Println("No Collection existing at the specified datapath. Creating one ...")
 		createCollection(*path)
 	}
 
@@ -263,9 +261,10 @@ func Delete(path string) bool {
 	path = EnvironmentPath + "warehouse/" + path
 	_, err := exec.Command("rm", "-R", path).Output()
 	if err != nil {
-		_, err2 := exec.Command("rm", "-R", path + ".data").Output()
+		_, err2 := exec.Command("rm", path + ".data").Output()
 		if err2 != nil {
-			panic("Deletion not possible ''Type 2''. Collection doesnot exists in Address: " + path)
+			panic("Deletion not possible ''Type 2''. Address: " + path)
+			// panic(err2)
 		}
 	}
 	return true
