@@ -259,17 +259,9 @@ func saveCustom(path *string, data string, pass uint16) bool {
 func Delete(path string) bool {
 
 	path = EnvironmentPath + "warehouse/" + path + ".data"
-	_, err := exec.Command("rm", path).Output()
-	if err != nil {
-		// _, err2 := exec.Command("rm", path + ".data").Output()
-		panic(err)
-		// if err2 != nil {
-		// 	panic("Deletion not possible ''Type 2''. Address: " + path)
-		// 	// panic(err2)
-		// }
-	}
-	return true
+	exec.Command("rm", path).Output()
 
+	return true
 }
 
 func warehouse() {
