@@ -179,7 +179,7 @@ func CollectionsAvailable(address string) ([]string, bool) {
 //Save ...
 func Save(path *string, data *string) bool {
 
-	saveCustom(path, *data, 12)
+	return saveCustom(path, *data, 12)
 
 }
 
