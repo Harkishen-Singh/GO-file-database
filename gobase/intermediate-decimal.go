@@ -42,7 +42,7 @@ func SaveArrFloat32(address *string, data *[]float32) bool {
 		return &final
 	} (increasePrecision(data))
 
-	return saveArrCustom(address, *dataInString, 9)
+	return saveArrCustom(address, *dataInString, 10)
 
 }
 
@@ -64,6 +64,6 @@ func SaveArrFloat64(address *string, data *[]float64) bool {
 		return &final
 	} (data)
 
-	return saveArrCustom(address, *dataInString, 10)
+	return saveArrCustom(address, *dataInString, 11)
 
 }

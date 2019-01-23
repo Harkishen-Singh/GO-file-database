@@ -132,13 +132,13 @@ func saveArrCustom(path *string, dataArr []string, pass uint16) bool {
 		typeVar = "_int64"
 
 	case 9:
-		typeVar = "_flt32"
+		typeVar = "___int"
 
 	case 10:
-		typeVar = "_flt64"
+		typeVar = "_flt32"
 
 	case 11:
-		typeVar = "string"
+		typeVar = "_flt64"
 
 	}
 	dataString = typeVar + dataString
