@@ -3,7 +3,7 @@ package gobase
 import "strconv"
 
 //SaveUint8 ...
-func SaveUint8(path *string, data *uint8) bool {
+func SaveUint8(path string, data *uint8) bool {
 
 	preCondition(path)
 
@@ -14,7 +14,7 @@ func SaveUint8(path *string, data *uint8) bool {
 }
 
 //SaveInt8 ...
-func SaveInt8(path *string, data *int8) bool {
+func SaveInt8(path string, data *int8) bool {
 
 	preCondition(path)
 
@@ -25,7 +25,7 @@ func SaveInt8(path *string, data *int8) bool {
 }
 
 //SaveUint16 ...
-func SaveUint16(path *string, data *uint16) bool {
+func SaveUint16(path string, data *uint16) bool {
 
 	preCondition(path)
 
@@ -36,7 +36,7 @@ func SaveUint16(path *string, data *uint16) bool {
 }
 
 //SaveInt16 ...
-func SaveInt16(path *string, data *int16) bool {
+func SaveInt16(path string, data *int16) bool {
 
 	preCondition(path)
 
@@ -47,7 +47,7 @@ func SaveInt16(path *string, data *int16) bool {
 }
 
 //SaveUint32 ...
-func SaveUint32(path *string, data *uint32) bool {
+func SaveUint32(path string, data *uint32) bool {
 
 	preCondition(path)
 
@@ -58,7 +58,7 @@ func SaveUint32(path *string, data *uint32) bool {
 }
 
 //SaveInt32 ...
-func SaveInt32(path *string, data *int32) bool {
+func SaveInt32(path string, data *int32) bool {
 
 	preCondition(path)
 
@@ -69,7 +69,7 @@ func SaveInt32(path *string, data *int32) bool {
 }
 
 //SaveUint64 ...
-func SaveUint64(path *string, data *uint64) bool {
+func SaveUint64(path string, data *uint64) bool {
 
 	preCondition(path)
 
@@ -81,7 +81,7 @@ func SaveUint64(path *string, data *uint64) bool {
 
 
 //SaveInt64 ...
-func SaveInt64(path *string, data *int64) bool {
+func SaveInt64(path string, data *int64) bool {
 
 	preCondition(path)
 
@@ -92,7 +92,7 @@ func SaveInt64(path *string, data *int64) bool {
 }
 
 //SaveInt ...
-func SaveInt(path *string, data *int) bool {
+func SaveInt(path string, data *int) bool {
 
 	preCondition(path)
 
@@ -103,7 +103,7 @@ func SaveInt(path *string, data *int) bool {
 }
 
 //SaveFloat32 ...
-func SaveFloat32(path *string, data *float32) bool {
+func SaveFloat32(path string, data *float32) bool {
 
 	preCondition(path)
 
@@ -114,7 +114,7 @@ func SaveFloat32(path *string, data *float32) bool {
 }
 
 //SaveFloat64 ...
-func SaveFloat64(path *string, data *float64) bool {
+func SaveFloat64(path string, data *float64) bool {
 
 	preCondition(path)
 

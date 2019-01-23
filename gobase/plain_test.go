@@ -27,9 +27,9 @@ func TestPlain(t *testing.T) {
 	for _,ele := range plainTests{
 
 		//Save Operations
-		Save(&(ele.location),&ele.value)
+		Save(ele.location, &ele.value)
 		//Retrive Operations
-		ele.retr, ele.typedata, ele.status = Retrive(&(ele.location))
+		ele.retr, ele.typedata, ele.status = Retrive(ele.location)
 		fmt.Println("Original: ", ele)
 		fmt.Println("Received: ", ele)
 
@@ -37,11 +37,8 @@ func TestPlain(t *testing.T) {
 			t.Errorf("Tests failed for location: %s | value: %s | received status: %t | received value: %s", ele.location, ele.value, ele.status, ele.retr)
 		}
 
+		//Delete Operation
+		Delete(ele.location)
 	}
-
-	Delete(plainTests[0].location)
-	Delete(plainTests[1].location)
-	Delete(plainTests[2].location)
-	Delete(plainTests[3].location)
 
 }

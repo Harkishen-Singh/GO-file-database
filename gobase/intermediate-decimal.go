@@ -4,17 +4,17 @@ import (
 	"strconv"
 )
 
-func preCondition(address *string) {
+func preCondition(address string) {
 
-	exists := collectionStatus(*address)
+	exists := collectionStatus(address)
 	if exists == false {
-		createCollection(*address)
+		createCollection(address)
 	}
 
 }
 
 //SaveArrFloat32 ...
-func SaveArrFloat32(address *string, data *[]float32) bool {
+func SaveArrFloat32(address string, data *[]float32) bool {
 
 	preCondition(address)
 
@@ -45,7 +45,7 @@ func SaveArrFloat32(address *string, data *[]float32) bool {
 }
 
 //SaveArrFloat64 ...
-func SaveArrFloat64(address *string, data *[]float64) bool {
+func SaveArrFloat64(address string, data *[]float64) bool {
 
 	preCondition(address)
 
