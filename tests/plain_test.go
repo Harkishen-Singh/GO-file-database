@@ -3,7 +3,7 @@ package tests
 import (
 	"testing"
 	"github.com/Harkishen-Singh/GO-file-database/gobase"
-	"fmt"
+	// "fmt"
 	// "../gobase"
 )
 
@@ -32,8 +32,8 @@ func TestPlain_tests(t *testing.T) {
 		gobase.Save(&(ele.location), &ele.value)
  		// Retrive Operation
 		ele.retr, ele.typedata, ele.status = gobase.Retrive(&(ele.location))
-		fmt.Println("Original: ", ele)
-		fmt.Println("Received: ", ele)
+		// fmt.Println("Original: ", ele)
+		// fmt.Println("Received: ", ele)
 
 		if (ele.value == ele.retr) && ele.status && (ele.typedata == ele.checkedData) {
 			t.Errorf("Tests failed for location: %s | value: %s | received status: %t | received value: %s", ele.location, ele.value, ele.status, ele.retr)

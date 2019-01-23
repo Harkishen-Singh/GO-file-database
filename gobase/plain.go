@@ -260,8 +260,33 @@ func Delete(path string) bool {
 
 	path = EnvironmentPath + "warehouse/" + path + ".data"
 	exec.Command("rm", path).Output()
+	var x = strings.LastIndex(path, "/")
+
+	cleanUPEmptyDirectories(path[:x])
 
 	return true
+}
+
+func cleanUPEmptyDirectories(path string) {
+
+	if path[len(path) - 9:] != "warehouse" {
+		fmt.Print("inside1")
+		var tt = strings.LastIndex(path, "/")
+		var xx = path[:tt]
+		a, _ := exec.Command("ls", path).Output()
+		var b = strings.Split(string(a), "\n")
+		if xx[len(xx) - 9:] != "warehouse" && len(b) != 0 {
+
+			_, err := exec.Command("rm", "-R", xx).Output()
+			if err != nil {
+				fmt.Println(err)
+			}
+		}
+		var temp = strings.LastIndex(path, "/")
+		if path[len(path) - 10:] != "warehouse" {
+			cleanUPEmptyDirectories(path[:temp])
+		}
+	}
 }
 
 func warehouse() {

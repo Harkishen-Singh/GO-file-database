@@ -3,7 +3,7 @@ package gobase
 import (
 	"testing"
 	"reflect"
-	"fmt"
+	// "fmt"
 )
 
 type intermediatePlainType struct {
@@ -47,8 +47,8 @@ func TestSaveArr(t *testing.T) {
 		// retrive operation
 		ele.retri, ele.typeStatus, ele.status = RetriveArr(&ele.location)
 
-		fmt.Println("Original: ", ele)
-		fmt.Println("Received: ", ele)
+		// fmt.Println("Original: ", ele)
+		// fmt.Println("Received: ", ele)
 		if !(reflect.DeepEqual(ele.retri, ele.data) && ele.status) {
 			t.Errorf("Tests failed for location: %s | value: %s | received status: %t | received value: %s", ele.location, ele.data, ele.status, ele.retri)
 		}
