@@ -22,11 +22,11 @@ func RetriveArr(address *string) ([]string, string, bool) {
 			return []string{}, "", false
 		}
 		temp := string(openfile)
-		var typeData = "string"
-		if temp[0] != '[' {
+		var typeData string
+		// if temp[0] != '[' {
 			typeData = temp[:6]
 			temp = temp[6:]
-		}
+		// }
 		data = strings.Split(temp[1: len(temp) -1], ",")
 		return data, typeData, true
 	}
@@ -59,33 +59,34 @@ func CollectionsAvailableArr(address *string) ([]string, bool) {
 }
 
 //SaveArr ...
-func SaveArr(path *string, dataArr []string) bool {
+func SaveArr(path *string, dataArr *[]string) bool {
 
-	exists := collectionStatus(*path)
-	if exists == false {
-		fmt.Println("No Collection existing at the specified datapath. Creating one ...")
-		createCollection(*path)
-	}
-	var address = "warehouse/" + *path + ".data"
-	file, err := os.OpenFile(address, os.O_WRONLY, 0600)
-	file.Seek(0, 0)
-	file.Truncate(0)
-	if err != nil {
-		panic(err)
-	}
-	defer file.Close()
-	var dataString = "["
-	dataString += strings.Join(dataArr, ",")
-	dataString += "]"
-	_, err = file.WriteString(dataString)
-	if err != nil {
-		fmt.Println("Error occured while writing the following data:")
-		fmt.Println("\n" + dataString)
-		fmt.Println("Address: warehouse/"+address)
-		fmt.Println(err)
-		return false
-	}
-	return true
+	// exists := collectionStatus(*path)
+	// if exists == false {
+	// 	fmt.Println("No Collection existing at the specified datapath. Creating one ...")
+	// 	createCollection(*path)
+	// }
+	// var address = "warehouse/" + *path + ".data"
+	// file, err := os.OpenFile(address, os.O_WRONLY, 0600)
+	// file.Seek(0, 0)
+	// file.Truncate(0)
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// defer file.Close()
+	// var dataString = "["
+	// dataString += strings.Join(dataArr, ",")
+	// dataString += "]"
+	// _, err = file.WriteString(dataString)
+	// if err != nil {
+	// 	fmt.Println("Error occured while writing the following data:")
+	// 	fmt.Println("\n" + dataString)
+	// 	fmt.Println("Address: warehouse/"+address)
+	// 	fmt.Println(err)
+	// 	return false
+	// }
+	// return true
+	return saveArrCustom(path, *dataArr, 12)
 
 }
 
@@ -143,6 +144,9 @@ func saveArrCustom(path *string, dataArr []string, pass uint16) bool {
 
 	case 11:
 		typeVar = "_flt64"
+
+	case 12:
+		typeVar = "string"
 
 	}
 	dataString = typeVar + dataString

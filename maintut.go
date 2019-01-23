@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/Harkishen-Singh/GO-file-database/gobase"
-	// "gobase"
+	// "./gobase"
 )
 
 func main() {
@@ -12,10 +12,14 @@ func main() {
 	fmt.Println(gobase.CollectionsAvailable("/"))
 	fmt.Println(gobase.Retrive("TestBase"))
 	var app = "someArr/Test"
-	gobase.SaveArr(&app, []string{"Hahen", "Singh"})
+	name := []string{"Harkishen", "Singh"}
+	gobase.SaveArr(&app, &name)
 	var addr = "someArrays/one"
 	var vals = []float64{2.3, 5.64, 96.5}
 	gobase.SaveArrFloat64(&addr, &vals)
 	fmt.Println(gobase.RetriveArr(&addr))
+	var details uint64 
+	details = 534532545342
+	gobase.SaveUint64(&addr, &details)
 }
 

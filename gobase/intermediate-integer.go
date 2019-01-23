@@ -23,69 +23,6 @@ func SaveArrUint8(path *string, data *[]uint8) bool{
 	return saveArrCustom(path, *dataInString, 1)
 }
 
-//SaveArrUint16 ...
-func SaveArrUint16(path *string, data *[]uint16) bool{
-
-	preCondition(path)
-
-	dataInString := func(data *[]uint16) *[]string {
-
-		var temp *[]string
-		final := []string{""}
-		temp = &final
-		for _,ele := range *data{
-			*temp = append(*temp, strconv.Itoa(int(ele)))
-		}
-		final = *temp
-		final = final[1:]
-		return &final
-	}(data)
-
-	return saveArrCustom(path, *dataInString, 3)
-}
-
-//SaveArrUint32 ...
-func SaveArrUint32(path *string, data *[]uint32) bool{
-
-	preCondition(path)
-
-	dataInString := func(data *[]uint32) *[]string {
-
-		var temp *[]string
-		final := []string{""}
-		temp = &final
-		for _,ele := range *data{
-			*temp = append(*temp, strconv.Itoa(int(ele)))
-		}
-		final = *temp
-		final = final[1:]
-		return &final
-	}(data)
-
-	return saveArrCustom(path, *dataInString, 5)
-}
-
-//SaveArrUint64 ...
-func SaveArrUint64(path *string, data *[]uint64) bool{
-
-	preCondition(path)
-
-	dataInString := func(data *[]uint64) *[]string {
-
-		var temp *[]string
-		final := []string{""}
-		temp = &final
-		for _,ele := range *data{
-			*temp = append(*temp, strconv.Itoa(int(ele)))
-		}
-		final = *temp
-		final = final[1:]
-		return &final
-	}(data)
-
-	return saveArrCustom(path, *dataInString, 7)
-}
-
 //SaveArrInt8 ...
 func SaveArrInt8(path *string, data *[]int8) bool{
 
@@ -105,6 +42,28 @@ func SaveArrInt8(path *string, data *[]int8) bool{
 	}(data)
 
 	return saveArrCustom(path, *dataInString, 2)
+}
+
+
+//SaveArrUint16 ...
+func SaveArrUint16(path *string, data *[]uint16) bool{
+
+	preCondition(path)
+
+	dataInString := func(data *[]uint16) *[]string {
+
+		var temp *[]string
+		final := []string{""}
+		temp = &final
+		for _,ele := range *data{
+			*temp = append(*temp, strconv.Itoa(int(ele)))
+		}
+		final = *temp
+		final = final[1:]
+		return &final
+	}(data)
+
+	return saveArrCustom(path, *dataInString, 3)
 }
 
 //SaveArrInt16 ...
@@ -128,6 +87,28 @@ func SaveArrInt16(path *string, data *[]int16) bool{
 	return saveArrCustom(path, *dataInString, 4)
 }
 
+//SaveArrUint32 ...
+func SaveArrUint32(path *string, data *[]uint32) bool{
+
+	preCondition(path)
+
+	dataInString := func(data *[]uint32) *[]string {
+
+		var temp *[]string
+		final := []string{""}
+		temp = &final
+		for _,ele := range *data{
+			*temp = append(*temp, strconv.Itoa(int(ele)))
+		}
+		final = *temp
+		final = final[1:]
+		return &final
+	}(data)
+
+	return saveArrCustom(path, *dataInString, 5)
+}
+
+
 //SaveArrInt32 ...
 func SaveArrInt32(path *string, data *[]int32) bool{
 
@@ -148,6 +129,29 @@ func SaveArrInt32(path *string, data *[]int32) bool{
 
 	return saveArrCustom(path, *dataInString, 6)
 }
+
+
+//SaveArrUint64 ...
+func SaveArrUint64(path *string, data *[]uint64) bool{
+
+	preCondition(path)
+
+	dataInString := func(data *[]uint64) *[]string {
+
+		var temp *[]string
+		final := []string{""}
+		temp = &final
+		for _,ele := range *data{
+			*temp = append(*temp, strconv.Itoa(int(ele)))
+		}
+		final = *temp
+		final = final[1:]
+		return &final
+	}(data)
+
+	return saveArrCustom(path, *dataInString, 7)
+}
+
 
 //SaveArrInt64 ...
 func SaveArrInt64(path *string, data *[]int64) bool{
