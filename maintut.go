@@ -2,8 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/Harkishen-Singh/GO-file-database/gobase"
-	// "./gobase"
+	"./gobase"
 )
 
 func main() {
