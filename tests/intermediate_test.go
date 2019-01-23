@@ -31,7 +31,7 @@ type intermediateDecimalType64 struct {
 	status bool
 }
 
-func TestSaveArr(t *testing.T) {
+func TestSaveArr_tests(t *testing.T) {
 
 	var testObjects = []intermediatePlainType {
 		{"testIntermediateArr",[]string{"first1", "second1", "third1", "fourth1", "five1"}, nil, "", false},
@@ -47,7 +47,8 @@ func TestSaveArr(t *testing.T) {
 
 		// retrive operation
 		ele.retri, ele.typeStatus, ele.status = gobase.RetriveArr(&ele.location)
-		fmt.Println(ele.data, ele.retri)
+		fmt.Println("Original: ", ele)
+		fmt.Println("Received: ", ele)
 		if !(reflect.DeepEqual(ele.retri, ele.data) || ele.status) {
 			t.Errorf("Tests failed for location: %s | value: %s | received status: %t | received value: %s", ele.location, ele.data, ele.status, ele.retri)
 		}
