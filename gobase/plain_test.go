@@ -25,8 +25,10 @@ func TestPlain(t *testing.T) {
 
 	for _,ele := range plainTests{
 
-		Save(&(ele.location),&ele.value)									//Save Operations
-		ele.retr, ele.typedata, ele.status = Retrive(&(ele.location)) 		//Retrive Operations
+		//Save Operations
+		Save(&(ele.location),&ele.value)
+		//Retrive Operations
+		ele.retr, ele.typedata, ele.status = Retrive(&(ele.location))
 
 		if (ele.value == ele.retr) && ele.status && (ele.typedata == ele.checkedData){
 			t.Errorf("Tests failed for location: %s | value: %s | received status: %t | received value: %s", ele.location, ele.value, ele.status, ele.retr)
