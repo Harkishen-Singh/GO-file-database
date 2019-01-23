@@ -1,7 +1,8 @@
-package gobase
+package tests
 
 import (
 	"testing"
+	"github.com/Harkishen-Singh/GO-file-database/gobase"
 )
 
 type plainContainer struct {
@@ -22,17 +23,17 @@ func TestPlain(t *testing.T) {
 
 	// save operations
 
-	Save(test1.location, test1.value)
-	Save(test2.location, test2.value)
-	Save(test3.location, test3.value)
-	Save(test4.location, test4.value)
+	gobase.Save(test1.location, test1.value)
+	gobase.Save(test2.location, test2.value)
+	gobase.Save(test3.location, test3.value)
+	gobase.Save(test4.location, test4.value)
 
 	// retrive operations
 
-	test1.retr, test1.status = Retrive(test1.location)
-	test2.retr, test2.status = Retrive(test2.location)
-	test3.retr, test3.status = Retrive(test3.location)
-	test4.retr, test4.status = Retrive(test4.location)
+	test1.retr, test1.status = gobase.Retrive(test1.location)
+	test2.retr, test2.status = gobase.Retrive(test2.location)
+	test3.retr, test3.status = gobase.Retrive(test3.location)
+	test4.retr, test4.status = gobase.Retrive(test4.location)
 
 	// checks
 
