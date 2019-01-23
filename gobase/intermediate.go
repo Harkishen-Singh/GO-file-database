@@ -11,13 +11,13 @@ import (
 
 
 //RetriveArr ...
-func RetriveArr(address *string) ([]string, string, bool) {
+func RetriveArr(address string) ([]string, string, bool) {
 
-	var documentAvailable = collectionStatus(*address)
+	var documentAvailable = collectionStatus(address)
 	var data []string
-	*address = EnvironmentPath + "warehouse/" + *address + ".data"
+	address = EnvironmentPath + "warehouse/" + address + ".data"
 	if documentAvailable {
-		openfile, err := ioutil.ReadFile(*address)
+		openfile, err := ioutil.ReadFile(address)
 		if err != nil {
 			return []string{}, "", false
 		}
@@ -33,21 +33,21 @@ func RetriveArr(address *string) ([]string, string, bool) {
 }
 
 //CollectionsAvailableArr ...
-func CollectionsAvailableArr(address *string) ([]string, bool) {
+func CollectionsAvailableArr(address string) ([]string, bool) {
 
 	var existingCollections []string
-	if *address != "/" {
-		path := EnvironmentPath + "warehouse/" + *address
+	if address != "/" {
+		path := EnvironmentPath + "warehouse/" + address
 		response, err := exec.Command("ls", path).Output()
 		if err != nil {
-			fmt.Println("Error while looking for Collections, at Address: "+*address)
+			fmt.Println("Error while looking for Collections, at Address: "+address)
 			log.Fatal(err)
 		}
 		existingCollections = strings.Split(string(response), "\n")
 	} else {
 		response, err := exec.Command("ls", EnvironmentPath + "warehouse/").Output()
 		if err != nil {
-			fmt.Println("Error while looking for Collections, at Address: "+*address)
+			fmt.Println("Error while looking for Collections, at Address: "+address)
 			log.Fatal(err)
 		}
 		existingCollections = strings.Split(string(response), "\n")
@@ -57,19 +57,19 @@ func CollectionsAvailableArr(address *string) ([]string, bool) {
 }
 
 //SaveArr ...
-func SaveArr(path *string, dataArr *[]string) bool {
+func SaveArr(path string, dataArr *[]string) bool {
 
 	return saveArrCustom(path, *dataArr, 12)
 
 }
 
-func saveArrCustom(path *string, dataArr []string, pass uint16) bool {
+func saveArrCustom(path string, dataArr []string, pass uint16) bool {
 
-	exists := collectionStatus(*path)
+	exists := collectionStatus(path)
 	if exists == false {
-		createCollection(*path)
+		createCollection(path)
 	}
-	var address = EnvironmentPath + "warehouse/" + *path + ".data"
+	var address = EnvironmentPath + "warehouse/" + path + ".data"
 	file, err := os.OpenFile(address, os.O_WRONLY, 0600)
 	file.Seek(0, 0)
 	file.Truncate(0)

@@ -42,10 +42,10 @@ func TestSaveArr(t *testing.T) {
 	for _, ele := range testObjects {
 
 		// save operation
-		SaveArr(&ele.location, &ele.data)
+		SaveArr(ele.location, &ele.data)
 
 		// retrive operation
-		ele.retri, ele.typeStatus, ele.status = RetriveArr(&ele.location)
+		ele.retri, ele.typeStatus, ele.status = RetriveArr(ele.location)
 
 		// fmt.Println("Original: ", ele)
 		// fmt.Println("Received: ", ele)
@@ -53,11 +53,9 @@ func TestSaveArr(t *testing.T) {
 			t.Errorf("Tests failed for location: %s | value: %s | received status: %t | received value: %s", ele.location, ele.data, ele.status, ele.retri)
 		}
 
-	}
+		//Delete Operation
+		Delete(ele.location)
 
-	Delete(testObjects[0].location)
-	Delete(testObjects[1].location)
-	Delete(testObjects[2].location)
-	Delete(testObjects[3].location)
+	}
 
 }
