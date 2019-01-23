@@ -3,7 +3,7 @@ package tests
 import (
 	"testing"
 	"github.com/Harkishen-Singh/GO-file-database/gobase"
-	// "fmt"
+	"fmt"
 	// "../gobase"
 )
 
