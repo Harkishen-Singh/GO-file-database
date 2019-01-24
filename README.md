@@ -23,28 +23,79 @@ add <code>"github.com/Harkishen-Singh/GO-db/gobase"</code> to import block of yo
 
 <hr>
 
-<h5>Saving</h5>
+<h4>Saving</h4>
 
-<code>gobase.Save(path string, data string) bool</code>
+* **Saving data into the file**
+  * To save a data of String Type:  
+<code>gobase.Save(path string, data *string) bool</code><br><br>
+  * Similarly to save the data of different datatypes:<br>
+<code>gobase.Save{datatype_code}(path string, data *{datatype}) bool</code><br>
 
 Example:
+<br>
+var details = "some data"<br>
+var id uint16 = 1234<br>
+<code>gobase.Save("Test", &details)</code><br>
+<code>gobase.SaveUint16("Random/Path/Test", &id)</code>
+<br>return_param 1: Status i.e., True if successful, else False<br>
+<br>
 
-<code>gobase.Save("Test", "some data")</code><br>
-<code>gobase.Save("Random/Path/Test", "some data")</code>
-<br>return_param 1: Status i.e., True if sccessful, else False
+* **Saving array type data into the file**
+  * To save an array of String Type:<br>
+<code>gobase.SaveArr(path string, data *string) bool</code><br><br>
+  * Similarly to save an array of different datatypes:<br>
+<code>gobase.SaveArr{datatype_code}(path string, data *{datatype}) bool</code><br>
+
+Example:<br>
+
+var details = {"Some", "Data"}<br>
+var vals = []uint8{1,2,3,4,5}<br>
+<code>gobase.SaveArr("TestArray", &details)</code><br>
+<code>gobase.SaveArrUint8("Random/Path/TestArray", &vals)</code>
+<br>return_param 1: Status i.e., True if successful, else False
+
+**The datatype codes for different datatypes are:**<br>
+
+Datatype | Datatype Code
+-------- | -------------
+Unsigned Integer8 | Uint8
+Unsigned Integer16 | Uint16
+Unsigned Integer32 | Uint32
+Unsigned Integer64 | Uint64
+Signed Integer8 | Int8
+Signed Integer16 | Int16
+Signed Integer32 | Int32
+Signed Integer64 | Int64
+Integer | Int
+Float32 | Float32
+Float64 | Float64
 
 <hr>
 
 <h5>Retriving</h5>
 
-<code>gobase.Retrive(path string) (string, bool)</code>
+* To retrieve the data:<br>
+<code>gobase.Retrive(path string) (string, string, bool)</code>
 <br>return_param 1: Available data at the specified path if successful; else ERROR_CODE: ```DOCUMENT_UNAVAILABLE``` or ```ERROR```
-<br>return_param 2: Status i.e., True if successful, else False
+<br>return_param 2: DataType of the stored data
+<br>return_param 3: Status i.e., True if successful, else False
 
 Example:
 
-<code>gobase.Retrive("Test")</code><br>
-<code>gobase.Retrive("Random/Path/Test")</code>
+<code>gobase.Retrive("Test") //output: some data string true</code> <br>
+<code>gobase.Retrive("Random/Path/Test") //output: 1234 _uint8 true</code>
+
+* To Retrieve an array:<br>
+<code>gobase.RetriveArr(path string) ([]string, string, bool)</code>
+<br>return_param 1: Available data at the specified path if successful; else ERROR_CODE: ```DOCUMENT_UNAVAILABLE``` or ```ERROR```
+<br>return_param 2: DataType of the stored data
+<br>return_param 3: Status i.e., True if successful, else False
+
+Example:
+
+<code>gobase.RetriveArr("TestArray") //output:[some data] string true</code> <br>
+<code>gobase.RetriveArr("Random/Path/TestArray") //output:[1 2 3 4 5] _uint8 true </code>
+
 
 <hr>
 
@@ -56,13 +107,13 @@ Example:
 
 Example:
 
-<code>gobase.CollectionsAvaliable("/")  // output: [Test, Random]</code><br>
+<code>gobase.CollectionsAvaliable("/")  // output: [Test.data, TestArray.data, Random]</code><br>
 <code>gobase.CollectionsAvaliable("Random") // output: [Path]</code>
 
 <hr>
 
 <h5>Deleting</h5>
-
+<p>It deletes the mentioned file and cleans up all the Empty Directories in the Warehouse Folder</p>
 <code>gobase.Delete(path string) bool</code>
 <br>return_param 1: Status i.e., True if successful, else False
 
