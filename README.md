@@ -27,7 +27,7 @@ add <code>"github.com/Harkishen-Singh/GO-db/gobase"</code> to import block of yo
 
 * **Saving data into the file**
   * To save a data of String Type:  
-<code>gobase.Save(path string, data *string) bool</code><br>
+<code>gobase.Save(path string, data *string) bool</code><br><br>
   * Similarly to save the data of different datatypes:<br>
 <code>gobase.Save<i>datatype_code</i>(path string, data *<i>datatype</i>) bool</code><br>
 
@@ -73,7 +73,7 @@ Float64 | float64
 
 <h5>Retriving</h5>
 
-To retrieve the data:<br>
+* To retrieve the data:<br>
 <code>gobase.Retrive(path string) (string, string, bool)</code>
 <br>return_param 1: Available data at the specified path if successful; else ERROR_CODE: ```DOCUMENT_UNAVAILABLE``` or ```ERROR```
 <br>return_param 2: DataType of the stored data
@@ -84,7 +84,7 @@ Example:
 <code>gobase.Retrive("Test")</code><br>
 <code>gobase.Retrive("Random/Path/Test")</code>
 
-To Retrieve a array:<br>
+* To Retrieve an array:<br>
 <code>gobase.RetriveArr(path string) ([]string, string, bool)</code>
 <br>return_param 1: Available data at the specified path if successful; else ERROR_CODE: ```DOCUMENT_UNAVAILABLE``` or ```ERROR```
 <br>return_param 2: DataType of the stored data
