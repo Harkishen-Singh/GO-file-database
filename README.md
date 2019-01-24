@@ -58,17 +58,17 @@ var vals = []uint8{1,2,3,4,5}<br>
 
 Datatype | Datatype Code
 -------- | -------------
-Unsigned Integer8 | uint8
-Unsigned Integer16 | uint16
-Unsigned Integer32 | uint32
-Unsigned Integer64 | uint64
-Signed Integer8 | int8
-Signed Integer16 | int16
-Signed Integer32 | int32
-Signed Integer64 | int64
-Integer | int
-Float32 | float32
-Float64 | float64
+Unsigned Integer8 | Uint8
+Unsigned Integer16 | Uint16
+Unsigned Integer32 | Uint32
+Unsigned Integer64 | Uint64
+Signed Integer8 | Int8
+Signed Integer16 | Int16
+Signed Integer32 | Int32
+Signed Integer64 | Int64
+Integer | Int
+Float32 | Float32
+Float64 | Float64
 
 <hr>
 
