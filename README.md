@@ -25,10 +25,10 @@ add <code>"github.com/Harkishen-Singh/GO-db/gobase"</code> to import block of yo
 
 <h4>Saving</h4>
 
-To save a data of String Type:  
+* **Saving data into the file**
+  * To save a data of String Type:  
 <code>gobase.Save(path string, data *string) bool</code><br>
-<br>
-Similarly to save the data of different datatypes:<br>
+  * Similarly to save the data of different datatypes:<br>
 <code>gobase.Save<i>datatype_code</i>(path string, data *<i>datatype</i>) bool</code><br>
 
 Example:
@@ -39,10 +39,11 @@ var id int = 1234<br>
 <code>gobase.SaveInt("Random/Path/Test", &id)</code>
 <br>return_param 1: Status i.e., True if successful, else False<br>
 <br>
-To save an array of String Type:<br>
-<code>gobase.SaveArr(path string, data *string) bool</code><br>
-<br>
-Similarly to save array of different datatypes:<br>
+
+* **Saving array type data into the file**
+  * To save an array of String Type:<br>
+<code>gobase.SaveArr(path string, data *string) bool</code><br><br>
+  * Similarly to save an array of different datatypes:<br>
 <code>gobase.SaveArr<i>datatype_code</i>(path string, data *<i>datatype</i>) bool</code><br>
 
 Example:<br>
