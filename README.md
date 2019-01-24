@@ -92,8 +92,8 @@ Example:
 
 Example:
 
-<code>gobase.Retrive("Test")</code><br>
-<code>gobase.Retrive("Random/Path/Test")</code>
+<code>gobase.RetriveArr("Test")</code><br>
+<code>gobase.RetriveArr("Random/Path/Test")</code>
 
 
 <hr>
