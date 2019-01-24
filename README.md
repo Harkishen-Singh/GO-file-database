@@ -29,14 +29,14 @@ add <code>"github.com/Harkishen-Singh/GO-db/gobase"</code> to import block of yo
   * To save a data of String Type:  
 <code>gobase.Save(path string, data *string) bool</code><br><br>
   * Similarly to save the data of different datatypes:<br>
-<code>gobase.Save<i>datatype_code</i>(path string, data *<i>datatype</i>) bool</code><br>
+<code>gobase.Save{datatype_code}(path string, data *{datatype}) bool</code><br>
 
 Example:
 <br>
 var details = "some data"<br>
-var id int = 1234<br>
+var id uint16 = 1234<br>
 <code>gobase.Save("Test", &details)</code><br>
-<code>gobase.SaveInt("Random/Path/Test", &id)</code>
+<code>gobase.SaveUint16("Random/Path/Test", &id)</code>
 <br>return_param 1: Status i.e., True if successful, else False<br>
 <br>
 
@@ -44,14 +44,14 @@ var id int = 1234<br>
   * To save an array of String Type:<br>
 <code>gobase.SaveArr(path string, data *string) bool</code><br><br>
   * Similarly to save an array of different datatypes:<br>
-<code>gobase.SaveArr<i>datatype_code</i>(path string, data *<i>datatype</i>) bool</code><br>
+<code>gobase.SaveArr{datatype_code}(path string, data *{datatype}) bool</code><br>
 
 Example:<br>
 
 var details = {"Some", "Data"}<br>
-var vals = []int{1,2,3,4,5}<br>
-<code>gobase.SaveArr("Test", &details)</code><br>
-<code>gobase.SaveArrInt("Random/Path/Test", &vals)</code>
+var vals = []uint8{1,2,3,4,5}<br>
+<code>gobase.SaveArr("TestArray", &details)</code><br>
+<code>gobase.SaveArrUint8("Random/Path/TestArray", &vals)</code>
 <br>return_param 1: Status i.e., True if successful, else False
 
 **The datatype codes for different datatypes are:**<br>
@@ -66,6 +66,7 @@ Signed Integer8 | int8
 Signed Integer16 | int16
 Signed Integer32 | int32
 Signed Integer64 | int64
+Integer | int
 Float32 | float32
 Float64 | float64
 
@@ -81,8 +82,8 @@ Float64 | float64
 
 Example:
 
-<code>gobase.Retrive("Test")</code><br>
-<code>gobase.Retrive("Random/Path/Test")</code>
+<code>gobase.Retrive("Test") //output: some data string true</code> <br>
+<code>gobase.Retrive("Random/Path/Test") //output: 1234 _uint8 true</code>
 
 * To Retrieve an array:<br>
 <code>gobase.RetriveArr(path string) ([]string, string, bool)</code>
@@ -92,8 +93,8 @@ Example:
 
 Example:
 
-<code>gobase.RetriveArr("Test")</code><br>
-<code>gobase.RetriveArr("Random/Path/Test")</code>
+<code>gobase.RetriveArr("TestArray") //output:[some data] string true</code> <br>
+<code>gobase.RetriveArr("Random/Path/TestArray") //output:[1 2 3 4 5] _uint8 true </code>
 
 
 <hr>
@@ -106,7 +107,7 @@ Example:
 
 Example:
 
-<code>gobase.CollectionsAvaliable("/")  // output: [Test, Random]</code><br>
+<code>gobase.CollectionsAvaliable("/")  // output: [Test.data, TestArray.data, Random]</code><br>
 <code>gobase.CollectionsAvaliable("Random") // output: [Path]</code>
 
 <hr>
