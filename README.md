@@ -23,15 +23,49 @@ add <code>"github.com/Harkishen-Singh/GO-db/gobase"</code> to import block of yo
 
 <hr>
 
-<h5>Saving</h5>
+<h4>Saving</h4>
 
-<code>gobase.Save(path string, data string) bool</code>
+To save a data of String Type:  
+<code>gobase.Save(path string, data *string) bool</code>
+<br>
+Similarly to save the data of different datatypes:<br>
+<code>gobase.Save_datatypecode_(path string, data *_datatype_) bool</code><br>
 
 Example:
 
-<code>gobase.Save("Test", "some data")</code><br>
-<code>gobase.Save("Random/Path/Test", "some data")</code>
-<br>return_param 1: Status i.e., True if sccessful, else False
+var details = "some data"
+var id int = 1234
+<code>gobase.Save("Test", &details)</code><br>
+<code>gobase.SaveInt("Random/Path/Test", &id)</code><br>
+<br>return_param 1: Status i.e., True if successful, else False
+
+To save an array of String Type:  
+<code>gobase.SaveArr(path string, data *string) bool</code>
+
+Similarly to save array of different datatypes:<br>
+<code>gobase.SaveArr_datatypecode_(path string, data *_datatype_) bool</code><br>
+
+Example:
+
+var details = {"Some", "Data"}
+var vals = []int{1,2,3,4,5}
+<code>gobase.SaveArr("Test", &details)</code><br>
+<code>gobase.SaveArrInt("Random/Path/Test", &vals)</code>
+<br>return_param 1: Status i.e., True if successful, else False
+
+**The datatype codes for different datatypes are:**
+Datatype | Datatype Code
+-------- | -------------
+Unsigned Integer8 | uint8
+Unsigned Integer16 | uint16
+Unsigned Integer32 | uint32
+Unsigned Integer64 | uint64
+Signed Integer8 | int8
+Signed Integer16 | int16
+Signed Integer32 | int32
+Signed Integer64 | int64
+Float32 | float32
+Float64 | float64
 
 <hr>
 
