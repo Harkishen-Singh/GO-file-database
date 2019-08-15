@@ -3,7 +3,7 @@ package gobase
 import "strconv"
 
 //SaveArrUint8 ...
-func SaveArrUint8(path string, data *[]uint8) bool{
+func SaveArrUint8(path string, data *[]uint8) bool {
 
 	preCondition(path)
 
@@ -12,7 +12,7 @@ func SaveArrUint8(path string, data *[]uint8) bool{
 		var temp *[]string
 		final := []string{""}
 		temp = &final
-		for _,ele := range *data{
+		for _, ele := range *data {
 			*temp = append(*temp, strconv.Itoa(int(ele)))
 		}
 		final = *temp
@@ -24,7 +24,7 @@ func SaveArrUint8(path string, data *[]uint8) bool{
 }
 
 //SaveArrInt8 ...
-func SaveArrInt8(path string, data *[]int8) bool{
+func SaveArrInt8(path string, data *[]int8) bool {
 
 	preCondition(path)
 
@@ -33,7 +33,7 @@ func SaveArrInt8(path string, data *[]int8) bool{
 		var temp *[]string
 		final := []string{""}
 		temp = &final
-		for _,ele := range *data{
+		for _, ele := range *data {
 			*temp = append(*temp, strconv.Itoa(int(ele)))
 		}
 		final = *temp
@@ -44,9 +44,8 @@ func SaveArrInt8(path string, data *[]int8) bool{
 	return saveArrCustom(path, *dataInString, 2)
 }
 
-
 //SaveArrUint16 ...
-func SaveArrUint16(path string, data *[]uint16) bool{
+func SaveArrUint16(path string, data *[]uint16) bool {
 
 	preCondition(path)
 
@@ -55,7 +54,7 @@ func SaveArrUint16(path string, data *[]uint16) bool{
 		var temp *[]string
 		final := []string{""}
 		temp = &final
-		for _,ele := range *data{
+		for _, ele := range *data {
 			*temp = append(*temp, strconv.Itoa(int(ele)))
 		}
 		final = *temp
@@ -67,7 +66,7 @@ func SaveArrUint16(path string, data *[]uint16) bool{
 }
 
 //SaveArrInt16 ...
-func SaveArrInt16(path string, data *[]int16) bool{
+func SaveArrInt16(path string, data *[]int16) bool {
 
 	preCondition(path)
 
@@ -76,7 +75,7 @@ func SaveArrInt16(path string, data *[]int16) bool{
 		var temp *[]string
 		final := []string{""}
 		temp = &final
-		for _,ele := range *data{
+		for _, ele := range *data {
 			*temp = append(*temp, strconv.Itoa(int(ele)))
 		}
 		final = *temp
@@ -88,7 +87,7 @@ func SaveArrInt16(path string, data *[]int16) bool{
 }
 
 //SaveArrUint32 ...
-func SaveArrUint32(path string, data *[]uint32) bool{
+func SaveArrUint32(path string, data *[]uint32) bool {
 
 	preCondition(path)
 
@@ -97,7 +96,7 @@ func SaveArrUint32(path string, data *[]uint32) bool{
 		var temp *[]string
 		final := []string{""}
 		temp = &final
-		for _,ele := range *data{
+		for _, ele := range *data {
 			*temp = append(*temp, strconv.Itoa(int(ele)))
 		}
 		final = *temp
@@ -108,9 +107,8 @@ func SaveArrUint32(path string, data *[]uint32) bool{
 	return saveArrCustom(path, *dataInString, 5)
 }
 
-
 //SaveArrInt32 ...
-func SaveArrInt32(path string, data *[]int32) bool{
+func SaveArrInt32(path string, data *[]int32) bool {
 
 	preCondition(path)
 
@@ -119,7 +117,7 @@ func SaveArrInt32(path string, data *[]int32) bool{
 		var temp *[]string
 		final := []string{""}
 		temp = &final
-		for _,ele := range *data{
+		for _, ele := range *data {
 			*temp = append(*temp, strconv.Itoa(int(ele)))
 		}
 		final = *temp
@@ -130,9 +128,8 @@ func SaveArrInt32(path string, data *[]int32) bool{
 	return saveArrCustom(path, *dataInString, 6)
 }
 
-
 //SaveArrUint64 ...
-func SaveArrUint64(path string, data *[]uint64) bool{
+func SaveArrUint64(path string, data *[]uint64) bool {
 
 	preCondition(path)
 
@@ -141,7 +138,7 @@ func SaveArrUint64(path string, data *[]uint64) bool{
 		var temp *[]string
 		final := []string{""}
 		temp = &final
-		for _,ele := range *data{
+		for _, ele := range *data {
 			*temp = append(*temp, strconv.Itoa(int(ele)))
 		}
 		final = *temp
@@ -152,9 +149,8 @@ func SaveArrUint64(path string, data *[]uint64) bool{
 	return saveArrCustom(path, *dataInString, 7)
 }
 
-
 //SaveArrInt64 ...
-func SaveArrInt64(path string, data *[]int64) bool{
+func SaveArrInt64(path string, data *[]int64) bool {
 
 	preCondition(path)
 
@@ -163,7 +159,7 @@ func SaveArrInt64(path string, data *[]int64) bool{
 		var temp *[]string
 		final := []string{""}
 		temp = &final
-		for _,ele := range *data{
+		for _, ele := range *data {
 			*temp = append(*temp, strconv.Itoa(int(ele)))
 		}
 		final = *temp
@@ -175,7 +171,7 @@ func SaveArrInt64(path string, data *[]int64) bool{
 }
 
 //SaveArrInt ...
-func SaveArrInt(path string, data *[]int) bool{
+func SaveArrInt(path string, data *[]int) bool {
 
 	preCondition(path)
 
@@ -184,7 +180,7 @@ func SaveArrInt(path string, data *[]int) bool{
 		var temp *[]string
 		final := []string{""}
 		temp = &final
-		for _,ele := range *data{
+		for _, ele := range *data {
 			*temp = append(*temp, strconv.Itoa(ele))
 		}
 		final = *temp

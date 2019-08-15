@@ -8,8 +8,6 @@ computing needs, and at the same time be simple to use.
 
 We have made an attempt to bridge this gap, by developing GO-db.
 
-<h4>Status: Under Development (Pre-Alpha),  currently supports operations via strings only</h4>
-
 <h3>First: Why to use GO-db?</h3>
 
 GO-db is a simple to use file based database, which is light, simple and efficient on resources. It has been designed with 
