@@ -18,7 +18,7 @@ func SaveArrFloat32(address string, data *[]float32) bool {
 
 	preCondition(address)
 
-	increasePrecision := func (data *[]float32) *[]float64 {
+	increasePrecision := func(data *[]float32) *[]float64 {
 
 		var temp *[]float64
 		for _, ele := range *data {
@@ -26,7 +26,7 @@ func SaveArrFloat32(address string, data *[]float32) bool {
 		}
 		return temp
 	}
-	dataInString := func (data *[]float64) *[]string {
+	dataInString := func(data *[]float64) *[]string {
 
 		var temp *[]string
 		final := []string{""}
@@ -38,7 +38,7 @@ func SaveArrFloat32(address string, data *[]float32) bool {
 		final = *temp
 		final = final[1:]
 		return &final
-	} (increasePrecision(data))
+	}(increasePrecision(data))
 
 	return saveArrCustom(address, *dataInString, 10)
 
@@ -49,7 +49,7 @@ func SaveArrFloat64(address string, data *[]float64) bool {
 
 	preCondition(address)
 
-	dataInString := func (data *[]float64) *[]string {
+	dataInString := func(data *[]float64) *[]string {
 
 		var temp *[]string
 		final := []string{""}
@@ -60,7 +60,7 @@ func SaveArrFloat64(address string, data *[]float64) bool {
 		final = *temp
 		final = final[1:]
 		return &final
-	} (data)
+	}(data)
 
 	return saveArrCustom(address, *dataInString, 11)
 
