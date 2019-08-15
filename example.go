@@ -25,4 +25,3 @@ func main() {
 	gobase.SaveUint64(addr2, &details)
 
 }
-
