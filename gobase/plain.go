@@ -270,6 +270,7 @@ func warehouse() {
 
 }
 
+//CheckType checks the type of data
 func CheckType(pass uint16) string {
 	var typeVar string
 
