@@ -1,36 +1,35 @@
 package tests
 
 import (
-	"testing"
-	"github.com/Harkishen-Singh/GO-file-database/gobase"
 	"fmt"
+	"github.com/Harkishen-Singh/GO-file-database/gobase"
+	"testing"
 	// "../gobase"
 )
 
 type plainContainer struct {
-	location string
-	value string
-	retr string
-	status bool
-	typedata string
+	location    string
+	value       string
+	retr        string
+	status      bool
+	typedata    string
 	checkedData string
 }
 
 func TestPlain_tests(t *testing.T) {
 
-	var plainTests = []plainContainer {
-		{"testPlain", "some test data", "", false, "string",""},
-		{"testPlain/test1", "some test data1", "", false,"string",""},
-		{"testPlainSecond/test2/test3/test4", "@some special test data with sym", "", false,"string",""},
-		{"testPlain2", "@#$%#@(*&^%$)", "", false,"string",""},
+	var plainTests = []plainContainer{
+		{"testPlain", "some test data", "", false, "string", ""},
+		{"testPlain/test1", "some test data1", "", false, "string", ""},
+		{"testPlainSecond/test2/test3/test4", "@some special test data with sym", "", false, "string", ""},
+		{"testPlain2", "@#$%#@(*&^%$)", "", false, "string", ""},
 	}
 
-
-	for _,ele := range plainTests {
+	for _, ele := range plainTests {
 
 		// Save Operation
 		gobase.Save(ele.location, &ele.value)
- 		// Retrive Operation
+		// Retrive Operation
 		ele.retr, ele.typedata, ele.status = gobase.Retrive(ele.location)
 		fmt.Println("Original: ", ele)
 		fmt.Println("Received: ", ele)
@@ -48,4 +47,3 @@ func TestPlain_tests(t *testing.T) {
 	gobase.Delete(plainTests[3].location)
 
 }
-
