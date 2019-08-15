@@ -79,7 +79,6 @@ func SaveUint64(path string, data *uint64) bool {
 	return saveCustom(path, dataInString, 7)
 }
 
-
 //SaveInt64 ...
 func SaveInt64(path string, data *int64) bool {
 

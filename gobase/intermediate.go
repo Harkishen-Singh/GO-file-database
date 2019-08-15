@@ -3,12 +3,11 @@ package gobase
 import (
 	"fmt"
 	"io/ioutil"
-	"os"
-	"strings"
-	"os/exec"
 	"log"
+	"os"
+	"os/exec"
+	"strings"
 )
-
 
 //RetriveArr ...
 func RetriveArr(address string) ([]string, string, bool) {
@@ -25,10 +24,10 @@ func RetriveArr(address string) ([]string, string, bool) {
 		var typeData string
 		typeData = temp[:6]
 		temp = temp[6:]
-		data = strings.Split(temp[1: len(temp) -1], ",")
+		data = strings.Split(temp[1:len(temp)-1], ",")
 		return data, typeData, true
 	}
-	return []string{}, "",false
+	return []string{}, "", false
 
 }
 
@@ -40,14 +39,14 @@ func CollectionsAvailableArr(address string) ([]string, bool) {
 		path := EnvironmentPath + "warehouse/" + address
 		response, err := exec.Command("ls", path).Output()
 		if err != nil {
-			fmt.Println("Error while looking for Collections, at Address: "+address)
+			fmt.Println("Error while looking for Collections, at Address: " + address)
 			log.Fatal(err)
 		}
 		existingCollections = strings.Split(string(response), "\n")
 	} else {
-		response, err := exec.Command("ls", EnvironmentPath + "warehouse/").Output()
+		response, err := exec.Command("ls", EnvironmentPath+"warehouse/").Output()
 		if err != nil {
-			fmt.Println("Error while looking for Collections, at Address: "+address)
+			fmt.Println("Error while looking for Collections, at Address: " + address)
 			log.Fatal(err)
 		}
 		existingCollections = strings.Split(string(response), "\n")
@@ -80,53 +79,14 @@ func saveArrCustom(path string, dataArr []string, pass uint16) bool {
 	var dataString = "["
 	dataString += strings.Join(dataArr, ",")
 	dataString += "]"
-	var typeVar string
 
-	switch pass {
+	dataString = CheckType(pass) + dataString
 
-	case 1:
-		typeVar = "_uint8"
-
-	case 2:
-		typeVar = "__int8"
-
-	case 3:
-		typeVar = "uint16"
-
-	case 4:
-		typeVar = "_int16"
-
-	case 5:
-		typeVar = "uint32"
-
-	case 6:
-		typeVar = "_int32"
-
-	case 7:
-		typeVar = "uint64"
-
-	case 8:
-		typeVar = "_int64"
-
-	case 9:
-		typeVar = "___int"
-
-	case 10:
-		typeVar = "_flt32"
-
-	case 11:
-		typeVar = "_flt64"
-
-	case 12:
-		typeVar = "string"
-
-	}
-	dataString = typeVar + dataString
 	_, err = file.WriteString(dataString)
 	if err != nil {
-		fmt.Println("Error occured while writing the following data:")
+		fmt.Println("Error occurred while writing the following data:")
 		fmt.Println("\n" + dataString)
-		fmt.Println("Address: warehouse/"+address)
+		fmt.Println("Address: warehouse/" + address)
 		fmt.Println(err)
 		return false
 	}

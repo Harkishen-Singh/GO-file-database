@@ -3,13 +3,12 @@ package main
 import (
 	"fmt"
 	"github.com/Harkishen-Singh/GO-file-database/gobase"
-	// "./gobase"
 )
 
 func main() {
 	fmt.Println("GO-db is running")
 	var x = "TestBase"
-	var y = "Rand"
+	var y = "Random"
 	gobase.Save(x, &y)
 	fmt.Println(gobase.CollectionsAvailable("/"))
 	fmt.Println(gobase.Retrive(x))
